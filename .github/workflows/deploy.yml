@@ -23,10 +23,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out the repository.
+    - name: Check out the repository
       uses: actions/checkout@v3
 
-    - id: auth
+    - name: Get Google Cloud credentials
       uses: google-github-actions/auth@v1
       with:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
