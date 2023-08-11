@@ -38,8 +38,8 @@ type impl struct {
 	store *cartStore
 }
 
-func (s *impl) Init(context.Context) error {
-	store, err := newCartStore(s.Logger(), s.cache.Get())
+func (s *impl) Init(ctx context.Context) error {
+	store, err := newCartStore(s.Logger(ctx), s.cache.Get())
 	s.store = store
 	return err
 }
