@@ -23,7 +23,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"sync"
 
 	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/weaver/examples/onlineboutique/adservice"
@@ -48,9 +47,6 @@ var (
 	staticFS embed.FS
 
 	validEnvs = []string{"local", "gcp"}
-
-	addrMu    sync.Mutex
-	localAddr string
 )
 
 type platformDetails struct {
