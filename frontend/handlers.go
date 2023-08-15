@@ -544,12 +544,3 @@ func renderCurrencyLogo(currencyCode string) string {
 	}
 	return logo
 }
-
-func stringinSlice(slice []string, val string) bool {
-	for _, item := range slice {
-		if item == val {
-			return true
-		}
-	}
-	return false
-}

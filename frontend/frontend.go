@@ -22,6 +22,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"slices"
 	"strings"
 	"sync"
 
@@ -93,7 +94,7 @@ func Serve(ctx context.Context, s *Server) error {
 	// otherwise detect GCP, which overrides env).
 	var env = os.Getenv("ENV_PLATFORM")
 	// Only override from env variable if set + valid env
-	if env == "" || !stringinSlice(validEnvs, env) {
+	if env == "" || !slices.Contains(validEnvs, env) {
 		fmt.Println("env platform is either empty or invalid")
 		env = "local"
 	}
@@ -152,9 +153,9 @@ func Serve(ctx context.Context, s *Server) error {
 
 	// Set handler.
 	var handler http.Handler = r
-	// TODO(spetrovic): Use the Service Weaver per-component config to provisionaly
+	// TODO(spetrovic): Use the Service Weaver per-component config to provisionally
 	// add these stats.
-	handler = ensureSessionID(handler)           // add session ID
+	handler = ensureSessionID(handler)              // add session ID
 	handler = newLogHandler(s.Logger(ctx), handler) // add logging
 	s.handler = handler
 
