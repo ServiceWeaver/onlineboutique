@@ -1,6 +1,6 @@
 module onlineboutique
 
-go 1.20
+go 1.21
 
 require (
 	github.com/ServiceWeaver/weaver v0.19.0
