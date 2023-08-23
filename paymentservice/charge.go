@@ -16,12 +16,12 @@ package paymentservice
 
 import (
 	"fmt"
+	"log/slog"
 	"strings"
 	"time"
 
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types/money"
+	"github.com/ServiceWeaver/onlineboutique/types/money"
 	"github.com/google/uuid"
-	"golang.org/x/exp/slog"
 )
 
 type InvalidCreditCardErr struct{}

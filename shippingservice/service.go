@@ -19,8 +19,8 @@ import (
 	"fmt"
 
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types/money"
+	"github.com/ServiceWeaver/onlineboutique/cartservice"
+	"github.com/ServiceWeaver/onlineboutique/types/money"
 )
 
 type Address struct {

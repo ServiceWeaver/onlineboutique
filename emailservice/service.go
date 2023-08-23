@@ -22,7 +22,7 @@ import (
 	"html/template"
 
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types"
+	"github.com/ServiceWeaver/onlineboutique/types"
 )
 
 var (

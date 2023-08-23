@@ -7,51 +7,34 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/ServiceWeaver/onlineboutique/paymentservice"
+	"github.com/ServiceWeaver/onlineboutique/shippingservice"
+	"github.com/ServiceWeaver/onlineboutique/types"
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/paymentservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/shippingservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types"
 	"github.com/ServiceWeaver/weaver/runtime/codegen"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"
 	"reflect"
 )
 
-var _ codegen.LatestVersion = codegen.Version[[0][17]struct{}](`
-
-ERROR: You generated this file with 'weaver generate' v0.18.0 (codegen
-version v0.17.0). The generated code is incompatible with the version of the
-github.com/ServiceWeaver/weaver module that you're using. The weaver module
-version can be found in your go.mod file or by running the following command.
-
-    go list -m github.com/ServiceWeaver/weaver
-
-We recommend updating the weaver module and the 'weaver generate' command by
-running the following.
-
-    go get github.com/ServiceWeaver/weaver@latest
-    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
-
-Then, re-run 'weaver generate' and re-build your code. If the problem persists,
-please file an issue at https://github.com/ServiceWeaver/weaver/issues.
-
-`)
-
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T",
+		Name:  "github.com/ServiceWeaver/onlineboutique/checkoutservice/T",
 		Iface: reflect.TypeOf((*T)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, placeOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T", Method: "PlaceOrder", Remote: false})}
+			return t_local_stub{impl: impl.(T), tracer: tracer, placeOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/checkoutservice/T", Method: "PlaceOrder", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, placeOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T", Method: "PlaceOrder", Remote: true})}
+			return t_client_stub{stub: stub, placeOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/checkoutservice/T", Method: "PlaceOrder", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return t_server_stub{impl: impl.(T), addLoad: addLoad}
 		},
-		RefData: "⟦4c9a54a7:wEaVeReDgE:github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice/T⟧\n⟦74479326:wEaVeReDgE:github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T⟧\n⟦7395fba7:wEaVeReDgE:github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/weaver/examples/onlineboutique/currencyservice/T⟧\n⟦ae088216:wEaVeReDgE:github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/weaver/examples/onlineboutique/shippingservice/T⟧\n⟦43860cf2:wEaVeReDgE:github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/weaver/examples/onlineboutique/emailservice/T⟧\n⟦54f6b59f:wEaVeReDgE:github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/weaver/examples/onlineboutique/paymentservice/T⟧\n",
+		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
+			return t_reflect_stub{caller: caller}
+		},
+		RefData: "⟦bd41e485:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/productcatalogservice/T⟧\n⟦d54c5b5d:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/cartservice/T⟧\n⟦fc39f6a9:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/currencyservice/T⟧\n⟦06129fa8:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/shippingservice/T⟧\n⟦176aaf8f:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/emailservice/T⟧\n⟦b148055f:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/paymentservice/T⟧\n",
 	})
 }
 
@@ -153,6 +136,29 @@ func (s t_client_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0
 	return
 }
 
+// Note that "weaver generate" will always generate the error message below.
+// Everything is okay. The error message is only relevant if you see it when
+// you run "go build" or "go run".
+var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+
+ERROR: You generated this file with 'weaver generate' v0.20.0 (codegen
+version v0.20.0). The generated code is incompatible with the version of the
+github.com/ServiceWeaver/weaver module that you're using. The weaver module
+version can be found in your go.mod file or by running the following command.
+
+    go list -m github.com/ServiceWeaver/weaver
+
+We recommend updating the weaver module and the 'weaver generate' command by
+running the following.
+
+    go get github.com/ServiceWeaver/weaver@latest
+    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
+
+Then, re-run 'weaver generate' and re-build your code. If the problem persists,
+please file an issue at https://github.com/ServiceWeaver/weaver/issues.
+
+`)
+
 // Server stub implementations.
 
 type t_server_stub struct {
@@ -196,6 +202,20 @@ func (s t_server_stub) placeOrder(ctx context.Context, args []byte) (res []byte,
 	(r0).WeaverMarshal(enc)
 	enc.Error(appErr)
 	return enc.Data(), nil
+}
+
+// Reflect stub implementations.
+
+type t_reflect_stub struct {
+	caller func(string, context.Context, []any, []any) error
+}
+
+// Check that t_reflect_stub implements the T interface.
+var _ T = (*t_reflect_stub)(nil)
+
+func (s t_reflect_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0 types.Order, err error) {
+	err = s.caller("PlaceOrder", ctx, []any{a0}, []any{&r0})
+	return
 }
 
 // AutoMarshal implementations.

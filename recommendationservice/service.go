@@ -19,7 +19,7 @@ import (
 	"math/rand"
 
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice"
+	"github.com/ServiceWeaver/onlineboutique/productcatalogservice"
 )
 
 type T interface {

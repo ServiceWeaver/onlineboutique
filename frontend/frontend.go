@@ -26,13 +26,13 @@ import (
 	"strings"
 
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/adservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/currencyservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/recommendationservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/shippingservice"
+	"github.com/ServiceWeaver/onlineboutique/adservice"
+	"github.com/ServiceWeaver/onlineboutique/cartservice"
+	"github.com/ServiceWeaver/onlineboutique/checkoutservice"
+	"github.com/ServiceWeaver/onlineboutique/currencyservice"
+	"github.com/ServiceWeaver/onlineboutique/productcatalogservice"
+	"github.com/ServiceWeaver/onlineboutique/recommendationservice"
+	"github.com/ServiceWeaver/onlineboutique/shippingservice"
 )
 
 const (

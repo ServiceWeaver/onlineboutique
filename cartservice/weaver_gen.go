@@ -14,55 +14,41 @@ import (
 	"reflect"
 )
 
-var _ codegen.LatestVersion = codegen.Version[[0][17]struct{}](`
-
-ERROR: You generated this file with 'weaver generate' v0.18.0 (codegen
-version v0.17.0). The generated code is incompatible with the version of the
-github.com/ServiceWeaver/weaver module that you're using. The weaver module
-version can be found in your go.mod file or by running the following command.
-
-    go list -m github.com/ServiceWeaver/weaver
-
-We recommend updating the weaver module and the 'weaver generate' command by
-running the following.
-
-    go get github.com/ServiceWeaver/weaver@latest
-    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
-
-Then, re-run 'weaver generate' and re-build your code. If the problem persists,
-please file an issue at https://github.com/ServiceWeaver/weaver/issues.
-
-`)
-
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T",
+		Name:  "github.com/ServiceWeaver/onlineboutique/cartservice/T",
 		Iface: reflect.TypeOf((*T)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T", Method: "AddItem", Remote: false}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T", Method: "EmptyCart", Remote: false}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T", Method: "GetCart", Remote: false})}
+			return t_local_stub{impl: impl.(T), tracer: tracer, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "AddItem", Remote: false}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "EmptyCart", Remote: false}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "GetCart", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T", Method: "AddItem", Remote: true}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T", Method: "EmptyCart", Remote: true}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T", Method: "GetCart", Remote: true})}
+			return t_client_stub{stub: stub, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "AddItem", Remote: true}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "EmptyCart", Remote: true}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "GetCart", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return t_server_stub{impl: impl.(T), addLoad: addLoad}
 		},
-		RefData: "⟦e78910e9:wEaVeReDgE:github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T→github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/cartCache⟧\n",
+		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
+			return t_reflect_stub{caller: caller}
+		},
+		RefData: "⟦f3d1cb6d:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/cartservice/T→github.com/ServiceWeaver/onlineboutique/cartservice/cartCache⟧\n",
 	})
 	codegen.Register(codegen.Registration{
-		Name:   "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/cartCache",
+		Name:   "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache",
 		Iface:  reflect.TypeOf((*cartCache)(nil)).Elem(),
 		Impl:   reflect.TypeOf(cartCacheImpl{}),
 		Routed: true,
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return cartCache_local_stub{impl: impl.(cartCache), tracer: tracer, addMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/cartCache", Method: "Add", Remote: false}), getMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/cartCache", Method: "Get", Remote: false}), removeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/cartCache", Method: "Remove", Remote: false})}
+			return cartCache_local_stub{impl: impl.(cartCache), tracer: tracer, addMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Add", Remote: false}), getMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Get", Remote: false}), removeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Remove", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return cartCache_client_stub{stub: stub, addMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/cartCache", Method: "Add", Remote: true}), getMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/cartCache", Method: "Get", Remote: true}), removeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/cartCache", Method: "Remove", Remote: true})}
+			return cartCache_client_stub{stub: stub, addMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Add", Remote: true}), getMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Get", Remote: true}), removeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Remove", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return cartCache_server_stub{impl: impl.(cartCache), addLoad: addLoad}
+		},
+		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
+			return cartCache_reflect_stub{caller: caller}
 		},
 		RefData: "",
 	})
@@ -269,7 +255,7 @@ func (s t_client_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err
 	// Preallocate a buffer of the right size.
 	size := 0
 	size += (4 + len(a0))
-	size += serviceweaver_size_CartItem_e3591e56(&a1)
+	size += serviceweaver_size_CartItem_5836939b(&a1)
 	enc := codegen.NewEncoder()
 	enc.Reset(size)
 
@@ -400,7 +386,7 @@ func (s t_client_stub) GetCart(ctx context.Context, a0 string) (r0 []CartItem, e
 
 	// Decode the results.
 	dec := codegen.NewDecoder(results)
-	r0 = serviceweaver_dec_slice_CartItem_7a7ff11c(dec)
+	r0 = serviceweaver_dec_slice_CartItem_7164ef85(dec)
 	err = dec.Error()
 	return
 }
@@ -447,7 +433,7 @@ func (s cartCache_client_stub) Add(ctx context.Context, a0 string, a1 []CartItem
 	// Encode arguments.
 	enc := codegen.NewEncoder()
 	enc.String(a0)
-	serviceweaver_enc_slice_CartItem_7a7ff11c(enc, a1)
+	serviceweaver_enc_slice_CartItem_7164ef85(enc, a1)
 
 	// Set the shardKey.
 	var r cartCacheRouter
@@ -523,7 +509,7 @@ func (s cartCache_client_stub) Get(ctx context.Context, a0 string) (r0 []CartIte
 
 	// Decode the results.
 	dec := codegen.NewDecoder(results)
-	r0 = serviceweaver_dec_slice_CartItem_7a7ff11c(dec)
+	r0 = serviceweaver_dec_slice_CartItem_7164ef85(dec)
 	err = dec.Error()
 	return
 }
@@ -586,6 +572,29 @@ func (s cartCache_client_stub) Remove(ctx context.Context, a0 string) (r0 bool, 
 	err = dec.Error()
 	return
 }
+
+// Note that "weaver generate" will always generate the error message below.
+// Everything is okay. The error message is only relevant if you see it when
+// you run "go build" or "go run".
+var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+
+ERROR: You generated this file with 'weaver generate' v0.20.0 (codegen
+version v0.20.0). The generated code is incompatible with the version of the
+github.com/ServiceWeaver/weaver module that you're using. The weaver module
+version can be found in your go.mod file or by running the following command.
+
+    go list -m github.com/ServiceWeaver/weaver
+
+We recommend updating the weaver module and the 'weaver generate' command by
+running the following.
+
+    go get github.com/ServiceWeaver/weaver@latest
+    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
+
+Then, re-run 'weaver generate' and re-build your code. If the problem persists,
+please file an issue at https://github.com/ServiceWeaver/weaver/issues.
+
+`)
 
 // Server stub implementations.
 
@@ -681,7 +690,7 @@ func (s t_server_stub) getCart(ctx context.Context, args []byte) (res []byte, er
 
 	// Encode the results.
 	enc := codegen.NewEncoder()
-	serviceweaver_enc_slice_CartItem_7a7ff11c(enc, r0)
+	serviceweaver_enc_slice_CartItem_7164ef85(enc, r0)
 	enc.Error(appErr)
 	return enc.Data(), nil
 }
@@ -721,7 +730,7 @@ func (s cartCache_server_stub) add(ctx context.Context, args []byte) (res []byte
 	var a0 string
 	a0 = dec.String()
 	var a1 []CartItem
-	a1 = serviceweaver_dec_slice_CartItem_7a7ff11c(dec)
+	a1 = serviceweaver_dec_slice_CartItem_7164ef85(dec)
 	var r cartCacheRouter
 	s.addLoad(_hashCartCache(r.Add(ctx, a0, a1)), 1.0)
 
@@ -758,7 +767,7 @@ func (s cartCache_server_stub) get(ctx context.Context, args []byte) (res []byte
 
 	// Encode the results.
 	enc := codegen.NewEncoder()
-	serviceweaver_enc_slice_CartItem_7a7ff11c(enc, r0)
+	serviceweaver_enc_slice_CartItem_7164ef85(enc, r0)
 	enc.Error(appErr)
 	return enc.Data(), nil
 }
@@ -788,6 +797,52 @@ func (s cartCache_server_stub) remove(ctx context.Context, args []byte) (res []b
 	enc.Bool(r0)
 	enc.Error(appErr)
 	return enc.Data(), nil
+}
+
+// Reflect stub implementations.
+
+type t_reflect_stub struct {
+	caller func(string, context.Context, []any, []any) error
+}
+
+// Check that t_reflect_stub implements the T interface.
+var _ T = (*t_reflect_stub)(nil)
+
+func (s t_reflect_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err error) {
+	err = s.caller("AddItem", ctx, []any{a0, a1}, []any{})
+	return
+}
+
+func (s t_reflect_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
+	err = s.caller("EmptyCart", ctx, []any{a0}, []any{})
+	return
+}
+
+func (s t_reflect_stub) GetCart(ctx context.Context, a0 string) (r0 []CartItem, err error) {
+	err = s.caller("GetCart", ctx, []any{a0}, []any{&r0})
+	return
+}
+
+type cartCache_reflect_stub struct {
+	caller func(string, context.Context, []any, []any) error
+}
+
+// Check that cartCache_reflect_stub implements the cartCache interface.
+var _ cartCache = (*cartCache_reflect_stub)(nil)
+
+func (s cartCache_reflect_stub) Add(ctx context.Context, a0 string, a1 []CartItem) (err error) {
+	err = s.caller("Add", ctx, []any{a0, a1}, []any{})
+	return
+}
+
+func (s cartCache_reflect_stub) Get(ctx context.Context, a0 string) (r0 []CartItem, err error) {
+	err = s.caller("Get", ctx, []any{a0}, []any{&r0})
+	return
+}
+
+func (s cartCache_reflect_stub) Remove(ctx context.Context, a0 string) (r0 bool, err error) {
+	err = s.caller("Remove", ctx, []any{a0}, []any{&r0})
+	return
 }
 
 // AutoMarshal implementations.
@@ -836,7 +891,7 @@ func _orderedCodeCartCache(r string) codegen.OrderedCode {
 
 // Encoding/decoding implementations.
 
-func serviceweaver_enc_slice_CartItem_7a7ff11c(enc *codegen.Encoder, arg []CartItem) {
+func serviceweaver_enc_slice_CartItem_7164ef85(enc *codegen.Encoder, arg []CartItem) {
 	if arg == nil {
 		enc.Len(-1)
 		return
@@ -847,7 +902,7 @@ func serviceweaver_enc_slice_CartItem_7a7ff11c(enc *codegen.Encoder, arg []CartI
 	}
 }
 
-func serviceweaver_dec_slice_CartItem_7a7ff11c(dec *codegen.Decoder) []CartItem {
+func serviceweaver_dec_slice_CartItem_7164ef85(dec *codegen.Decoder) []CartItem {
 	n := dec.Len()
 	if n == -1 {
 		return nil
@@ -861,9 +916,9 @@ func serviceweaver_dec_slice_CartItem_7a7ff11c(dec *codegen.Decoder) []CartItem 
 
 // Size implementations.
 
-// serviceweaver_size_CartItem_e3591e56 returns the size (in bytes) of the serialization
+// serviceweaver_size_CartItem_5836939b returns the size (in bytes) of the serialization
 // of the provided type.
-func serviceweaver_size_CartItem_e3591e56(x *CartItem) int {
+func serviceweaver_size_CartItem_5836939b(x *CartItem) int {
 	size := 0
 	size += 0
 	size += (4 + len(x.ProductID))

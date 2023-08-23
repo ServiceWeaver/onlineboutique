@@ -16,9 +16,9 @@ package types
 
 import (
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/shippingservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types/money"
+	"github.com/ServiceWeaver/onlineboutique/cartservice"
+	"github.com/ServiceWeaver/onlineboutique/shippingservice"
+	"github.com/ServiceWeaver/onlineboutique/types/money"
 )
 
 // Order represents a user order.

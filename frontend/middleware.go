@@ -16,11 +16,11 @@ package frontend
 
 import (
 	"context"
+	"log/slog"
 	"net/http"
 	"time"
 
 	"github.com/google/uuid"
-	"golang.org/x/exp/slog"
 )
 
 type ctxKeyLogger struct{}

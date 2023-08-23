@@ -17,8 +17,7 @@ package cartservice
 import (
 	"context"
 	"errors"
-
-	"golang.org/x/exp/slog"
+	"log/slog"
 )
 
 type cartStore struct {

@@ -20,6 +20,7 @@ import (
 	"errors"
 	"fmt"
 	"html/template"
+	"log/slog"
 	"math/rand"
 	"net/http"
 	"os"
@@ -28,14 +29,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/adservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/paymentservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/shippingservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types/money"
-	"golang.org/x/exp/slog"
+	"github.com/ServiceWeaver/onlineboutique/adservice"
+	"github.com/ServiceWeaver/onlineboutique/cartservice"
+	"github.com/ServiceWeaver/onlineboutique/checkoutservice"
+	"github.com/ServiceWeaver/onlineboutique/paymentservice"
+	"github.com/ServiceWeaver/onlineboutique/productcatalogservice"
+	"github.com/ServiceWeaver/onlineboutique/shippingservice"
+	"github.com/ServiceWeaver/onlineboutique/types/money"
 )
 
 const (

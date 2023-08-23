@@ -5,17 +5,28 @@ package types
 
 import (
 	"fmt"
+	"github.com/ServiceWeaver/onlineboutique/cartservice"
+	"github.com/ServiceWeaver/onlineboutique/shippingservice"
+	"github.com/ServiceWeaver/onlineboutique/types/money"
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/shippingservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types/money"
 	"github.com/ServiceWeaver/weaver/runtime/codegen"
 )
 
-var _ codegen.LatestVersion = codegen.Version[[0][17]struct{}](`
+// weaver.InstanceOf checks.
 
-ERROR: You generated this file with 'weaver generate' v0.18.0 (codegen
-version v0.17.0). The generated code is incompatible with the version of the
+// weaver.Router checks.
+
+// Local stub implementations.
+
+// Client stub implementations.
+
+// Note that "weaver generate" will always generate the error message below.
+// Everything is okay. The error message is only relevant if you see it when
+// you run "go build" or "go run".
+var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+
+ERROR: You generated this file with 'weaver generate' v0.20.0 (codegen
+version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
 
@@ -32,15 +43,9 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 `)
 
-// weaver.InstanceOf checks.
-
-// weaver.Router checks.
-
-// Local stub implementations.
-
-// Client stub implementations.
-
 // Server stub implementations.
+
+// Reflect stub implementations.
 
 // AutoMarshal implementations.
 
@@ -65,7 +70,7 @@ func (x *Order) WeaverMarshal(enc *codegen.Encoder) {
 	enc.String(x.ShippingTrackingID)
 	(x.ShippingCost).WeaverMarshal(enc)
 	(x.ShippingAddress).WeaverMarshal(enc)
-	serviceweaver_enc_slice_OrderItem_2b9377cb(enc, x.Items)
+	serviceweaver_enc_slice_OrderItem_7622e708(enc, x.Items)
 }
 
 func (x *Order) WeaverUnmarshal(dec *codegen.Decoder) {
@@ -76,10 +81,10 @@ func (x *Order) WeaverUnmarshal(dec *codegen.Decoder) {
 	x.ShippingTrackingID = dec.String()
 	(&x.ShippingCost).WeaverUnmarshal(dec)
 	(&x.ShippingAddress).WeaverUnmarshal(dec)
-	x.Items = serviceweaver_dec_slice_OrderItem_2b9377cb(dec)
+	x.Items = serviceweaver_dec_slice_OrderItem_7622e708(dec)
 }
 
-func serviceweaver_enc_slice_OrderItem_2b9377cb(enc *codegen.Encoder, arg []OrderItem) {
+func serviceweaver_enc_slice_OrderItem_7622e708(enc *codegen.Encoder, arg []OrderItem) {
 	if arg == nil {
 		enc.Len(-1)
 		return
@@ -90,7 +95,7 @@ func serviceweaver_enc_slice_OrderItem_2b9377cb(enc *codegen.Encoder, arg []Orde
 	}
 }
 
-func serviceweaver_dec_slice_OrderItem_2b9377cb(dec *codegen.Decoder) []OrderItem {
+func serviceweaver_dec_slice_OrderItem_7622e708(dec *codegen.Decoder) []OrderItem {
 	n := dec.Len()
 	if n == -1 {
 		return nil

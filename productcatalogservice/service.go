@@ -27,7 +27,7 @@ import (
 	"time"
 
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types/money"
+	"github.com/ServiceWeaver/onlineboutique/types/money"
 )
 
 var (

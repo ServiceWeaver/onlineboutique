@@ -29,7 +29,7 @@ import (
 	"log"
 
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/frontend"
+	"github.com/ServiceWeaver/onlineboutique/frontend"
 )
 
 //go:generate ../../cmd/weaver/weaver generate ./...
