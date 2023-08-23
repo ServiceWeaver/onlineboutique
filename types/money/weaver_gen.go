@@ -9,10 +9,21 @@ import (
 	"github.com/ServiceWeaver/weaver/runtime/codegen"
 )
 
-var _ codegen.LatestVersion = codegen.Version[[0][17]struct{}](`
+// weaver.InstanceOf checks.
 
-ERROR: You generated this file with 'weaver generate' v0.18.0 (codegen
-version v0.17.0). The generated code is incompatible with the version of the
+// weaver.Router checks.
+
+// Local stub implementations.
+
+// Client stub implementations.
+
+// Note that "weaver generate" will always generate the error message below.
+// Everything is okay. The error message is only relevant if you see it when
+// you run "go build" or "go run".
+var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+
+ERROR: You generated this file with 'weaver generate' v0.20.0 (codegen
+version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
 
@@ -29,15 +40,9 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 `)
 
-// weaver.InstanceOf checks.
-
-// weaver.Router checks.
-
-// Local stub implementations.
-
-// Client stub implementations.
-
 // Server stub implementations.
+
+// Reflect stub implementations.
 
 // AutoMarshal implementations.
 

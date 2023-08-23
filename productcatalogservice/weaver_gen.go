@@ -7,47 +7,30 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/ServiceWeaver/onlineboutique/types/money"
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types/money"
 	"github.com/ServiceWeaver/weaver/runtime/codegen"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"
 	"reflect"
 )
 
-var _ codegen.LatestVersion = codegen.Version[[0][17]struct{}](`
-
-ERROR: You generated this file with 'weaver generate' v0.18.0 (codegen
-version v0.17.0). The generated code is incompatible with the version of the
-github.com/ServiceWeaver/weaver module that you're using. The weaver module
-version can be found in your go.mod file or by running the following command.
-
-    go list -m github.com/ServiceWeaver/weaver
-
-We recommend updating the weaver module and the 'weaver generate' command by
-running the following.
-
-    go get github.com/ServiceWeaver/weaver@latest
-    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
-
-Then, re-run 'weaver generate' and re-build your code. If the problem persists,
-please file an issue at https://github.com/ServiceWeaver/weaver/issues.
-
-`)
-
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice/T",
+		Name:  "github.com/ServiceWeaver/onlineboutique/productcatalogservice/T",
 		Iface: reflect.TypeOf((*T)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, getProductMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice/T", Method: "GetProduct", Remote: false}), listProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice/T", Method: "ListProducts", Remote: false}), searchProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice/T", Method: "SearchProducts", Remote: false})}
+			return t_local_stub{impl: impl.(T), tracer: tracer, getProductMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/T", Method: "GetProduct", Remote: false}), listProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/T", Method: "ListProducts", Remote: false}), searchProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/T", Method: "SearchProducts", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, getProductMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice/T", Method: "GetProduct", Remote: true}), listProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice/T", Method: "ListProducts", Remote: true}), searchProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice/T", Method: "SearchProducts", Remote: true})}
+			return t_client_stub{stub: stub, getProductMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/T", Method: "GetProduct", Remote: true}), listProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/T", Method: "ListProducts", Remote: true}), searchProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/T", Method: "SearchProducts", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+		},
+		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
+			return t_reflect_stub{caller: caller}
 		},
 		RefData: "",
 	})
@@ -242,7 +225,7 @@ func (s t_client_stub) ListProducts(ctx context.Context) (r0 []Product, err erro
 
 	// Decode the results.
 	dec := codegen.NewDecoder(results)
-	r0 = serviceweaver_dec_slice_Product_3e9d9e07(dec)
+	r0 = serviceweaver_dec_slice_Product_2bf2ec03(dec)
 	err = dec.Error()
 	return
 }
@@ -298,10 +281,33 @@ func (s t_client_stub) SearchProducts(ctx context.Context, a0 string) (r0 []Prod
 
 	// Decode the results.
 	dec := codegen.NewDecoder(results)
-	r0 = serviceweaver_dec_slice_Product_3e9d9e07(dec)
+	r0 = serviceweaver_dec_slice_Product_2bf2ec03(dec)
 	err = dec.Error()
 	return
 }
+
+// Note that "weaver generate" will always generate the error message below.
+// Everything is okay. The error message is only relevant if you see it when
+// you run "go build" or "go run".
+var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+
+ERROR: You generated this file with 'weaver generate' v0.20.0 (codegen
+version v0.20.0). The generated code is incompatible with the version of the
+github.com/ServiceWeaver/weaver module that you're using. The weaver module
+version can be found in your go.mod file or by running the following command.
+
+    go list -m github.com/ServiceWeaver/weaver
+
+We recommend updating the weaver module and the 'weaver generate' command by
+running the following.
+
+    go get github.com/ServiceWeaver/weaver@latest
+    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
+
+Then, re-run 'weaver generate' and re-build your code. If the problem persists,
+please file an issue at https://github.com/ServiceWeaver/weaver/issues.
+
+`)
 
 // Server stub implementations.
 
@@ -367,7 +373,7 @@ func (s t_server_stub) listProducts(ctx context.Context, args []byte) (res []byt
 
 	// Encode the results.
 	enc := codegen.NewEncoder()
-	serviceweaver_enc_slice_Product_3e9d9e07(enc, r0)
+	serviceweaver_enc_slice_Product_2bf2ec03(enc, r0)
 	enc.Error(appErr)
 	return enc.Data(), nil
 }
@@ -392,9 +398,33 @@ func (s t_server_stub) searchProducts(ctx context.Context, args []byte) (res []b
 
 	// Encode the results.
 	enc := codegen.NewEncoder()
-	serviceweaver_enc_slice_Product_3e9d9e07(enc, r0)
+	serviceweaver_enc_slice_Product_2bf2ec03(enc, r0)
 	enc.Error(appErr)
 	return enc.Data(), nil
+}
+
+// Reflect stub implementations.
+
+type t_reflect_stub struct {
+	caller func(string, context.Context, []any, []any) error
+}
+
+// Check that t_reflect_stub implements the T interface.
+var _ T = (*t_reflect_stub)(nil)
+
+func (s t_reflect_stub) GetProduct(ctx context.Context, a0 string) (r0 Product, err error) {
+	err = s.caller("GetProduct", ctx, []any{a0}, []any{&r0})
+	return
+}
+
+func (s t_reflect_stub) ListProducts(ctx context.Context) (r0 []Product, err error) {
+	err = s.caller("ListProducts", ctx, []any{}, []any{&r0})
+	return
+}
+
+func (s t_reflect_stub) SearchProducts(ctx context.Context, a0 string) (r0 []Product, err error) {
+	err = s.caller("SearchProducts", ctx, []any{a0}, []any{&r0})
+	return
 }
 
 // AutoMarshal implementations.
@@ -462,7 +492,7 @@ func serviceweaver_dec_slice_string_4af10117(dec *codegen.Decoder) []string {
 
 // Encoding/decoding implementations.
 
-func serviceweaver_enc_slice_Product_3e9d9e07(enc *codegen.Encoder, arg []Product) {
+func serviceweaver_enc_slice_Product_2bf2ec03(enc *codegen.Encoder, arg []Product) {
 	if arg == nil {
 		enc.Len(-1)
 		return
@@ -473,7 +503,7 @@ func serviceweaver_enc_slice_Product_3e9d9e07(enc *codegen.Encoder, arg []Produc
 	}
 }
 
-func serviceweaver_dec_slice_Product_3e9d9e07(dec *codegen.Decoder) []Product {
+func serviceweaver_dec_slice_Product_2bf2ec03(dec *codegen.Decoder) []Product {
 	n := dec.Len()
 	if n == -1 {
 		return nil

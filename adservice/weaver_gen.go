@@ -14,39 +14,22 @@ import (
 	"reflect"
 )
 
-var _ codegen.LatestVersion = codegen.Version[[0][17]struct{}](`
-
-ERROR: You generated this file with 'weaver generate' v0.18.0 (codegen
-version v0.17.0). The generated code is incompatible with the version of the
-github.com/ServiceWeaver/weaver module that you're using. The weaver module
-version can be found in your go.mod file or by running the following command.
-
-    go list -m github.com/ServiceWeaver/weaver
-
-We recommend updating the weaver module and the 'weaver generate' command by
-running the following.
-
-    go get github.com/ServiceWeaver/weaver@latest
-    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
-
-Then, re-run 'weaver generate' and re-build your code. If the problem persists,
-please file an issue at https://github.com/ServiceWeaver/weaver/issues.
-
-`)
-
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/weaver/examples/onlineboutique/adservice/T",
+		Name:  "github.com/ServiceWeaver/onlineboutique/adservice/T",
 		Iface: reflect.TypeOf((*T)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, getAdsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/adservice/T", Method: "GetAds", Remote: false})}
+			return t_local_stub{impl: impl.(T), tracer: tracer, getAdsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/adservice/T", Method: "GetAds", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, getAdsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/weaver/examples/onlineboutique/adservice/T", Method: "GetAds", Remote: true})}
+			return t_client_stub{stub: stub, getAdsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/adservice/T", Method: "GetAds", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+		},
+		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
+			return t_reflect_stub{caller: caller}
 		},
 		RefData: "",
 	})
@@ -145,10 +128,33 @@ func (s t_client_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err er
 
 	// Decode the results.
 	dec := codegen.NewDecoder(results)
-	r0 = serviceweaver_dec_slice_Ad_86ae3655(dec)
+	r0 = serviceweaver_dec_slice_Ad_ce85bfa7(dec)
 	err = dec.Error()
 	return
 }
+
+// Note that "weaver generate" will always generate the error message below.
+// Everything is okay. The error message is only relevant if you see it when
+// you run "go build" or "go run".
+var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+
+ERROR: You generated this file with 'weaver generate' v0.20.0 (codegen
+version v0.20.0). The generated code is incompatible with the version of the
+github.com/ServiceWeaver/weaver module that you're using. The weaver module
+version can be found in your go.mod file or by running the following command.
+
+    go list -m github.com/ServiceWeaver/weaver
+
+We recommend updating the weaver module and the 'weaver generate' command by
+running the following.
+
+    go get github.com/ServiceWeaver/weaver@latest
+    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
+
+Then, re-run 'weaver generate' and re-build your code. If the problem persists,
+please file an issue at https://github.com/ServiceWeaver/weaver/issues.
+
+`)
 
 // Server stub implementations.
 
@@ -190,9 +196,23 @@ func (s t_server_stub) getAds(ctx context.Context, args []byte) (res []byte, err
 
 	// Encode the results.
 	enc := codegen.NewEncoder()
-	serviceweaver_enc_slice_Ad_86ae3655(enc, r0)
+	serviceweaver_enc_slice_Ad_ce85bfa7(enc, r0)
 	enc.Error(appErr)
 	return enc.Data(), nil
+}
+
+// Reflect stub implementations.
+
+type t_reflect_stub struct {
+	caller func(string, context.Context, []any, []any) error
+}
+
+// Check that t_reflect_stub implements the T interface.
+var _ T = (*t_reflect_stub)(nil)
+
+func (s t_reflect_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err error) {
+	err = s.caller("GetAds", ctx, []any{a0}, []any{&r0})
+	return
 }
 
 // AutoMarshal implementations.
@@ -248,7 +268,7 @@ func serviceweaver_dec_slice_string_4af10117(dec *codegen.Decoder) []string {
 	return res
 }
 
-func serviceweaver_enc_slice_Ad_86ae3655(enc *codegen.Encoder, arg []Ad) {
+func serviceweaver_enc_slice_Ad_ce85bfa7(enc *codegen.Encoder, arg []Ad) {
 	if arg == nil {
 		enc.Len(-1)
 		return
@@ -259,7 +279,7 @@ func serviceweaver_enc_slice_Ad_86ae3655(enc *codegen.Encoder, arg []Ad) {
 	}
 }
 
-func serviceweaver_dec_slice_Ad_86ae3655(dec *codegen.Decoder) []Ad {
+func serviceweaver_dec_slice_Ad_ce85bfa7(dec *codegen.Decoder) []Ad {
 	n := dec.Len()
 	if n == -1 {
 		return nil

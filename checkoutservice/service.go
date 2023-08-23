@@ -19,14 +19,14 @@ import (
 	"fmt"
 
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/currencyservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/emailservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/paymentservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/shippingservice"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types/money"
+	"github.com/ServiceWeaver/onlineboutique/cartservice"
+	"github.com/ServiceWeaver/onlineboutique/currencyservice"
+	"github.com/ServiceWeaver/onlineboutique/emailservice"
+	"github.com/ServiceWeaver/onlineboutique/paymentservice"
+	"github.com/ServiceWeaver/onlineboutique/productcatalogservice"
+	"github.com/ServiceWeaver/onlineboutique/shippingservice"
+	"github.com/ServiceWeaver/onlineboutique/types"
+	"github.com/ServiceWeaver/onlineboutique/types/money"
 	"github.com/google/uuid"
 )
 

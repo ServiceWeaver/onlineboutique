@@ -11,26 +11,6 @@ import (
 	"reflect"
 )
 
-var _ codegen.LatestVersion = codegen.Version[[0][17]struct{}](`
-
-ERROR: You generated this file with 'weaver generate' v0.18.0 (codegen
-version v0.17.0). The generated code is incompatible with the version of the
-github.com/ServiceWeaver/weaver module that you're using. The weaver module
-version can be found in your go.mod file or by running the following command.
-
-    go list -m github.com/ServiceWeaver/weaver
-
-We recommend updating the weaver module and the 'weaver generate' command by
-running the following.
-
-    go get github.com/ServiceWeaver/weaver@latest
-    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
-
-Then, re-run 'weaver generate' and re-build your code. If the problem persists,
-please file an issue at https://github.com/ServiceWeaver/weaver/issues.
-
-`)
-
 func init() {
 	codegen.Register(codegen.Registration{
 		Name:      "github.com/ServiceWeaver/weaver/Main",
@@ -44,7 +24,10 @@ func init() {
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return main_server_stub{impl: impl.(weaver.Main), addLoad: addLoad}
 		},
-		RefData: "⟦36ba6b75:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/weaver/examples/onlineboutique/productcatalogservice/T⟧\n⟦ad903f0a:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/weaver/examples/onlineboutique/currencyservice/T⟧\n⟦ae7426b7:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/weaver/examples/onlineboutique/cartservice/T⟧\n⟦3324d893:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/weaver/examples/onlineboutique/recommendationservice/T⟧\n⟦f76a2b4a:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/weaver/examples/onlineboutique/checkoutservice/T⟧\n⟦dd0dfbe8:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/weaver/examples/onlineboutique/shippingservice/T⟧\n⟦24712bd9:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/weaver/examples/onlineboutique/adservice/T⟧\n⟦29a161ab:wEaVeRlIsTeNeRs:github.com/ServiceWeaver/weaver/Main→boutique⟧\n",
+		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
+			return main_reflect_stub{caller: caller}
+		},
+		RefData: "⟦363c77ec:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/productcatalogservice/T⟧\n⟦16def78d:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/currencyservice/T⟧\n⟦40736322:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/cartservice/T⟧\n⟦5c103a64:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/recommendationservice/T⟧\n⟦3b7b3945:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/checkoutservice/T⟧\n⟦04e480c2:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/shippingservice/T⟧\n⟦88607723:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/adservice/T⟧\n⟦29a161ab:wEaVeRlIsTeNeRs:github.com/ServiceWeaver/weaver/Main→boutique⟧\n",
 	})
 }
 
@@ -73,6 +56,29 @@ type main_client_stub struct {
 // Check that main_client_stub implements the weaver.Main interface.
 var _ weaver.Main = (*main_client_stub)(nil)
 
+// Note that "weaver generate" will always generate the error message below.
+// Everything is okay. The error message is only relevant if you see it when
+// you run "go build" or "go run".
+var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+
+ERROR: You generated this file with 'weaver generate' v0.20.0 (codegen
+version v0.20.0). The generated code is incompatible with the version of the
+github.com/ServiceWeaver/weaver module that you're using. The weaver module
+version can be found in your go.mod file or by running the following command.
+
+    go list -m github.com/ServiceWeaver/weaver
+
+We recommend updating the weaver module and the 'weaver generate' command by
+running the following.
+
+    go get github.com/ServiceWeaver/weaver@latest
+    go install github.com/ServiceWeaver/weaver/cmd/weaver@latest
+
+Then, re-run 'weaver generate' and re-build your code. If the problem persists,
+please file an issue at https://github.com/ServiceWeaver/weaver/issues.
+
+`)
+
 // Server stub implementations.
 
 type main_server_stub struct {
@@ -90,3 +96,13 @@ func (s main_server_stub) GetStubFn(method string) func(ctx context.Context, arg
 		return nil
 	}
 }
+
+// Reflect stub implementations.
+
+type main_reflect_stub struct {
+	caller func(string, context.Context, []any, []any) error
+}
+
+// Check that main_reflect_stub implements the weaver.Main interface.
+var _ weaver.Main = (*main_reflect_stub)(nil)
+

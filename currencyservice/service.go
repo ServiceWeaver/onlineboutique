@@ -23,7 +23,7 @@ import (
 	"strconv"
 
 	"github.com/ServiceWeaver/weaver"
-	"github.com/ServiceWeaver/weaver/examples/onlineboutique/types/money"
+	"github.com/ServiceWeaver/onlineboutique/types/money"
 	"golang.org/x/exp/maps"
 )
 
