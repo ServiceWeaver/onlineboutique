@@ -28,11 +28,11 @@ import (
 	"flag"
 	"log"
 
-	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/onlineboutique/frontend"
+	"github.com/ServiceWeaver/weaver"
 )
 
-//go:generate ../../cmd/weaver/weaver generate ./...
+//go:generate weaver generate ./...
 
 func main() {
 	flag.Parse()
