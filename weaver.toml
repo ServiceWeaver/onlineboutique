@@ -6,7 +6,7 @@ rollout = "5m"
 listeners.boutique = {address = "localhost:12345"}
 
 [multi]
-listeners.boutique = {address = "localhost:12345"}
+listeners.boutique = {address = ":8080"}
 
 [gke]
 regions = ["us-west1"]
