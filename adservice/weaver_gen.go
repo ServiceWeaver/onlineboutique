@@ -16,50 +16,50 @@ import (
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/onlineboutique/adservice/T",
-		Iface: reflect.TypeOf((*T)(nil)).Elem(),
+		Name:  "github.com/ServiceWeaver/onlineboutique/adservice/AdService",
+		Iface: reflect.TypeOf((*AdService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, getAdsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/adservice/T", Method: "GetAds", Remote: false})}
+			return adService_local_stub{impl: impl.(AdService), tracer: tracer, getAdsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/adservice/AdService", Method: "GetAds", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, getAdsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/adservice/T", Method: "GetAds", Remote: true})}
+			return adService_client_stub{stub: stub, getAdsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/adservice/AdService", Method: "GetAds", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
-			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+			return adService_server_stub{impl: impl.(AdService), addLoad: addLoad}
 		},
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
-			return t_reflect_stub{caller: caller}
+			return adService_reflect_stub{caller: caller}
 		},
 		RefData: "",
 	})
 }
 
 // weaver.InstanceOf checks.
-var _ weaver.InstanceOf[T] = (*impl)(nil)
+var _ weaver.InstanceOf[AdService] = (*impl)(nil)
 
 // weaver.Router checks.
 var _ weaver.Unrouted = (*impl)(nil)
 
 // Local stub implementations.
 
-type t_local_stub struct {
-	impl          T
+type adService_local_stub struct {
+	impl          AdService
 	tracer        trace.Tracer
 	getAdsMetrics *codegen.MethodMetrics
 }
 
-// Check that t_local_stub implements the T interface.
-var _ T = (*t_local_stub)(nil)
+// Check that adService_local_stub implements the AdService interface.
+var _ AdService = (*adService_local_stub)(nil)
 
-func (s t_local_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err error) {
+func (s adService_local_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err error) {
 	// Update metrics.
 	begin := s.getAdsMetrics.Begin()
 	defer func() { s.getAdsMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "adservice.T.GetAds", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "adservice.AdService.GetAds", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -74,15 +74,15 @@ func (s t_local_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err err
 
 // Client stub implementations.
 
-type t_client_stub struct {
+type adService_client_stub struct {
 	stub          codegen.Stub
 	getAdsMetrics *codegen.MethodMetrics
 }
 
-// Check that t_client_stub implements the T interface.
-var _ T = (*t_client_stub)(nil)
+// Check that adService_client_stub implements the AdService interface.
+var _ AdService = (*adService_client_stub)(nil)
 
-func (s t_client_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err error) {
+func (s adService_client_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.getAdsMetrics.Begin()
@@ -91,7 +91,7 @@ func (s t_client_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err er
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "adservice.T.GetAds", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "adservice.AdService.GetAds", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -138,7 +138,7 @@ func (s t_client_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err er
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.22.0 (codegen
+ERROR: You generated this file with 'weaver generate' (devel) (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
@@ -158,16 +158,16 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 // Server stub implementations.
 
-type t_server_stub struct {
-	impl    T
+type adService_server_stub struct {
+	impl    AdService
 	addLoad func(key uint64, load float64)
 }
 
-// Check that t_server_stub implements the codegen.Server interface.
-var _ codegen.Server = (*t_server_stub)(nil)
+// Check that adService_server_stub implements the codegen.Server interface.
+var _ codegen.Server = (*adService_server_stub)(nil)
 
 // GetStubFn implements the codegen.Server interface.
-func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
+func (s adService_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
 	switch method {
 	case "GetAds":
 		return s.getAds
@@ -176,7 +176,7 @@ func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args [
 	}
 }
 
-func (s t_server_stub) getAds(ctx context.Context, args []byte) (res []byte, err error) {
+func (s adService_server_stub) getAds(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -203,14 +203,14 @@ func (s t_server_stub) getAds(ctx context.Context, args []byte) (res []byte, err
 
 // Reflect stub implementations.
 
-type t_reflect_stub struct {
+type adService_reflect_stub struct {
 	caller func(string, context.Context, []any, []any) error
 }
 
-// Check that t_reflect_stub implements the T interface.
-var _ T = (*t_reflect_stub)(nil)
+// Check that adService_reflect_stub implements the AdService interface.
+var _ AdService = (*adService_reflect_stub)(nil)
 
-func (s t_reflect_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err error) {
+func (s adService_reflect_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad, err error) {
 	err = s.caller("GetAds", ctx, []any{a0}, []any{&r0})
 	return
 }

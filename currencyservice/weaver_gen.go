@@ -16,51 +16,51 @@ import (
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/onlineboutique/currencyservice/T",
-		Iface: reflect.TypeOf((*T)(nil)).Elem(),
+		Name:  "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService",
+		Iface: reflect.TypeOf((*CurrencyService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, convertMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/T", Method: "Convert", Remote: false}), getSupportedCurrenciesMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/T", Method: "GetSupportedCurrencies", Remote: false})}
+			return currencyService_local_stub{impl: impl.(CurrencyService), tracer: tracer, convertMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "Convert", Remote: false}), getSupportedCurrenciesMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "GetSupportedCurrencies", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, convertMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/T", Method: "Convert", Remote: true}), getSupportedCurrenciesMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/T", Method: "GetSupportedCurrencies", Remote: true})}
+			return currencyService_client_stub{stub: stub, convertMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "Convert", Remote: true}), getSupportedCurrenciesMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "GetSupportedCurrencies", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
-			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+			return currencyService_server_stub{impl: impl.(CurrencyService), addLoad: addLoad}
 		},
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
-			return t_reflect_stub{caller: caller}
+			return currencyService_reflect_stub{caller: caller}
 		},
 		RefData: "",
 	})
 }
 
 // weaver.InstanceOf checks.
-var _ weaver.InstanceOf[T] = (*impl)(nil)
+var _ weaver.InstanceOf[CurrencyService] = (*impl)(nil)
 
 // weaver.Router checks.
 var _ weaver.Unrouted = (*impl)(nil)
 
 // Local stub implementations.
 
-type t_local_stub struct {
-	impl                          T
+type currencyService_local_stub struct {
+	impl                          CurrencyService
 	tracer                        trace.Tracer
 	convertMetrics                *codegen.MethodMetrics
 	getSupportedCurrenciesMetrics *codegen.MethodMetrics
 }
 
-// Check that t_local_stub implements the T interface.
-var _ T = (*t_local_stub)(nil)
+// Check that currencyService_local_stub implements the CurrencyService interface.
+var _ CurrencyService = (*currencyService_local_stub)(nil)
 
-func (s t_local_stub) Convert(ctx context.Context, a0 money.T, a1 string) (r0 money.T, err error) {
+func (s currencyService_local_stub) Convert(ctx context.Context, a0 money.T, a1 string) (r0 money.T, err error) {
 	// Update metrics.
 	begin := s.convertMetrics.Begin()
 	defer func() { s.convertMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "currencyservice.T.Convert", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "currencyservice.CurrencyService.Convert", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -73,14 +73,14 @@ func (s t_local_stub) Convert(ctx context.Context, a0 money.T, a1 string) (r0 mo
 	return s.impl.Convert(ctx, a0, a1)
 }
 
-func (s t_local_stub) GetSupportedCurrencies(ctx context.Context) (r0 []string, err error) {
+func (s currencyService_local_stub) GetSupportedCurrencies(ctx context.Context) (r0 []string, err error) {
 	// Update metrics.
 	begin := s.getSupportedCurrenciesMetrics.Begin()
 	defer func() { s.getSupportedCurrenciesMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "currencyservice.T.GetSupportedCurrencies", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "currencyservice.CurrencyService.GetSupportedCurrencies", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -95,16 +95,16 @@ func (s t_local_stub) GetSupportedCurrencies(ctx context.Context) (r0 []string, 
 
 // Client stub implementations.
 
-type t_client_stub struct {
+type currencyService_client_stub struct {
 	stub                          codegen.Stub
 	convertMetrics                *codegen.MethodMetrics
 	getSupportedCurrenciesMetrics *codegen.MethodMetrics
 }
 
-// Check that t_client_stub implements the T interface.
-var _ T = (*t_client_stub)(nil)
+// Check that currencyService_client_stub implements the CurrencyService interface.
+var _ CurrencyService = (*currencyService_client_stub)(nil)
 
-func (s t_client_stub) Convert(ctx context.Context, a0 money.T, a1 string) (r0 money.T, err error) {
+func (s currencyService_client_stub) Convert(ctx context.Context, a0 money.T, a1 string) (r0 money.T, err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.convertMetrics.Begin()
@@ -113,7 +113,7 @@ func (s t_client_stub) Convert(ctx context.Context, a0 money.T, a1 string) (r0 m
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "currencyservice.T.Convert", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "currencyservice.CurrencyService.Convert", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -156,7 +156,7 @@ func (s t_client_stub) Convert(ctx context.Context, a0 money.T, a1 string) (r0 m
 	return
 }
 
-func (s t_client_stub) GetSupportedCurrencies(ctx context.Context) (r0 []string, err error) {
+func (s currencyService_client_stub) GetSupportedCurrencies(ctx context.Context) (r0 []string, err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.getSupportedCurrenciesMetrics.Begin()
@@ -165,7 +165,7 @@ func (s t_client_stub) GetSupportedCurrencies(ctx context.Context) (r0 []string,
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "currencyservice.T.GetSupportedCurrencies", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "currencyservice.CurrencyService.GetSupportedCurrencies", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -208,7 +208,7 @@ func (s t_client_stub) GetSupportedCurrencies(ctx context.Context) (r0 []string,
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.22.0 (codegen
+ERROR: You generated this file with 'weaver generate' (devel) (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
@@ -228,16 +228,16 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 // Server stub implementations.
 
-type t_server_stub struct {
-	impl    T
+type currencyService_server_stub struct {
+	impl    CurrencyService
 	addLoad func(key uint64, load float64)
 }
 
-// Check that t_server_stub implements the codegen.Server interface.
-var _ codegen.Server = (*t_server_stub)(nil)
+// Check that currencyService_server_stub implements the codegen.Server interface.
+var _ codegen.Server = (*currencyService_server_stub)(nil)
 
 // GetStubFn implements the codegen.Server interface.
-func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
+func (s currencyService_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
 	switch method {
 	case "Convert":
 		return s.convert
@@ -248,7 +248,7 @@ func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args [
 	}
 }
 
-func (s t_server_stub) convert(ctx context.Context, args []byte) (res []byte, err error) {
+func (s currencyService_server_stub) convert(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -275,7 +275,7 @@ func (s t_server_stub) convert(ctx context.Context, args []byte) (res []byte, er
 	return enc.Data(), nil
 }
 
-func (s t_server_stub) getSupportedCurrencies(ctx context.Context, args []byte) (res []byte, err error) {
+func (s currencyService_server_stub) getSupportedCurrencies(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -297,19 +297,19 @@ func (s t_server_stub) getSupportedCurrencies(ctx context.Context, args []byte) 
 
 // Reflect stub implementations.
 
-type t_reflect_stub struct {
+type currencyService_reflect_stub struct {
 	caller func(string, context.Context, []any, []any) error
 }
 
-// Check that t_reflect_stub implements the T interface.
-var _ T = (*t_reflect_stub)(nil)
+// Check that currencyService_reflect_stub implements the CurrencyService interface.
+var _ CurrencyService = (*currencyService_reflect_stub)(nil)
 
-func (s t_reflect_stub) Convert(ctx context.Context, a0 money.T, a1 string) (r0 money.T, err error) {
+func (s currencyService_reflect_stub) Convert(ctx context.Context, a0 money.T, a1 string) (r0 money.T, err error) {
 	err = s.caller("Convert", ctx, []any{a0, a1}, []any{&r0})
 	return
 }
 
-func (s t_reflect_stub) GetSupportedCurrencies(ctx context.Context) (r0 []string, err error) {
+func (s currencyService_reflect_stub) GetSupportedCurrencies(ctx context.Context) (r0 []string, err error) {
 	err = s.caller("GetSupportedCurrencies", ctx, []any{}, []any{&r0})
 	return
 }

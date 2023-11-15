@@ -37,12 +37,12 @@ type Ad struct {
 	Text        string // Short advertisement text to display.
 }
 
-type T interface {
+type AdService interface {
 	GetAds(ctx context.Context, keywords []string) ([]Ad, error)
 }
 
 type impl struct {
-	weaver.Implements[T]
+	weaver.Implements[AdService]
 	ads map[string]Ad
 }
 

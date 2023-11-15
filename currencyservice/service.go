@@ -22,8 +22,8 @@ import (
 	"math"
 	"strconv"
 
-	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/onlineboutique/types/money"
+	"github.com/ServiceWeaver/weaver"
 	"golang.org/x/exp/maps"
 )
 
@@ -32,13 +32,13 @@ var (
 	currencyData []byte
 )
 
-type T interface {
+type CurrencyService interface {
 	GetSupportedCurrencies(ctx context.Context) ([]string, error)
 	Convert(ctx context.Context, from money.T, toCode string) (money.T, error)
 }
 
 type impl struct {
-	weaver.Implements[T]
+	weaver.Implements[CurrencyService]
 	conversionMap map[string]float64
 }
 

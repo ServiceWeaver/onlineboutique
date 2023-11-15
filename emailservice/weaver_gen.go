@@ -16,50 +16,50 @@ import (
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/onlineboutique/emailservice/T",
-		Iface: reflect.TypeOf((*T)(nil)).Elem(),
+		Name:  "github.com/ServiceWeaver/onlineboutique/emailservice/EmailService",
+		Iface: reflect.TypeOf((*EmailService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, sendOrderConfirmationMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/emailservice/T", Method: "SendOrderConfirmation", Remote: false})}
+			return emailService_local_stub{impl: impl.(EmailService), tracer: tracer, sendOrderConfirmationMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/emailservice/EmailService", Method: "SendOrderConfirmation", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, sendOrderConfirmationMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/emailservice/T", Method: "SendOrderConfirmation", Remote: true})}
+			return emailService_client_stub{stub: stub, sendOrderConfirmationMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/emailservice/EmailService", Method: "SendOrderConfirmation", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
-			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+			return emailService_server_stub{impl: impl.(EmailService), addLoad: addLoad}
 		},
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
-			return t_reflect_stub{caller: caller}
+			return emailService_reflect_stub{caller: caller}
 		},
 		RefData: "",
 	})
 }
 
 // weaver.InstanceOf checks.
-var _ weaver.InstanceOf[T] = (*impl)(nil)
+var _ weaver.InstanceOf[EmailService] = (*impl)(nil)
 
 // weaver.Router checks.
 var _ weaver.Unrouted = (*impl)(nil)
 
 // Local stub implementations.
 
-type t_local_stub struct {
-	impl                         T
+type emailService_local_stub struct {
+	impl                         EmailService
 	tracer                       trace.Tracer
 	sendOrderConfirmationMetrics *codegen.MethodMetrics
 }
 
-// Check that t_local_stub implements the T interface.
-var _ T = (*t_local_stub)(nil)
+// Check that emailService_local_stub implements the EmailService interface.
+var _ EmailService = (*emailService_local_stub)(nil)
 
-func (s t_local_stub) SendOrderConfirmation(ctx context.Context, a0 string, a1 types.Order) (err error) {
+func (s emailService_local_stub) SendOrderConfirmation(ctx context.Context, a0 string, a1 types.Order) (err error) {
 	// Update metrics.
 	begin := s.sendOrderConfirmationMetrics.Begin()
 	defer func() { s.sendOrderConfirmationMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "emailservice.T.SendOrderConfirmation", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "emailservice.EmailService.SendOrderConfirmation", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -74,15 +74,15 @@ func (s t_local_stub) SendOrderConfirmation(ctx context.Context, a0 string, a1 t
 
 // Client stub implementations.
 
-type t_client_stub struct {
+type emailService_client_stub struct {
 	stub                         codegen.Stub
 	sendOrderConfirmationMetrics *codegen.MethodMetrics
 }
 
-// Check that t_client_stub implements the T interface.
-var _ T = (*t_client_stub)(nil)
+// Check that emailService_client_stub implements the EmailService interface.
+var _ EmailService = (*emailService_client_stub)(nil)
 
-func (s t_client_stub) SendOrderConfirmation(ctx context.Context, a0 string, a1 types.Order) (err error) {
+func (s emailService_client_stub) SendOrderConfirmation(ctx context.Context, a0 string, a1 types.Order) (err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.sendOrderConfirmationMetrics.Begin()
@@ -91,7 +91,7 @@ func (s t_client_stub) SendOrderConfirmation(ctx context.Context, a0 string, a1 
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "emailservice.T.SendOrderConfirmation", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "emailservice.EmailService.SendOrderConfirmation", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -138,7 +138,7 @@ func (s t_client_stub) SendOrderConfirmation(ctx context.Context, a0 string, a1 
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.22.0 (codegen
+ERROR: You generated this file with 'weaver generate' (devel) (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
@@ -158,16 +158,16 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 // Server stub implementations.
 
-type t_server_stub struct {
-	impl    T
+type emailService_server_stub struct {
+	impl    EmailService
 	addLoad func(key uint64, load float64)
 }
 
-// Check that t_server_stub implements the codegen.Server interface.
-var _ codegen.Server = (*t_server_stub)(nil)
+// Check that emailService_server_stub implements the codegen.Server interface.
+var _ codegen.Server = (*emailService_server_stub)(nil)
 
 // GetStubFn implements the codegen.Server interface.
-func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
+func (s emailService_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
 	switch method {
 	case "SendOrderConfirmation":
 		return s.sendOrderConfirmation
@@ -176,7 +176,7 @@ func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args [
 	}
 }
 
-func (s t_server_stub) sendOrderConfirmation(ctx context.Context, args []byte) (res []byte, err error) {
+func (s emailService_server_stub) sendOrderConfirmation(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -204,14 +204,14 @@ func (s t_server_stub) sendOrderConfirmation(ctx context.Context, args []byte) (
 
 // Reflect stub implementations.
 
-type t_reflect_stub struct {
+type emailService_reflect_stub struct {
 	caller func(string, context.Context, []any, []any) error
 }
 
-// Check that t_reflect_stub implements the T interface.
-var _ T = (*t_reflect_stub)(nil)
+// Check that emailService_reflect_stub implements the EmailService interface.
+var _ EmailService = (*emailService_reflect_stub)(nil)
 
-func (s t_reflect_stub) SendOrderConfirmation(ctx context.Context, a0 string, a1 types.Order) (err error) {
+func (s emailService_reflect_stub) SendOrderConfirmation(ctx context.Context, a0 string, a1 types.Order) (err error) {
 	err = s.caller("SendOrderConfirmation", ctx, []any{a0, a1}, []any{})
 	return
 }

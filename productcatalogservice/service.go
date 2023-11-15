@@ -26,8 +26,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/onlineboutique/types/money"
+	"github.com/ServiceWeaver/weaver"
 )
 
 var (
@@ -52,14 +52,14 @@ type Product struct {
 	Categories []string `json:"categories"`
 }
 
-type T interface {
+type ProductCatalogService interface {
 	ListProducts(ctx context.Context) ([]Product, error)
 	GetProduct(ctx context.Context, productID string) (Product, error)
 	SearchProducts(ctx context.Context, query string) ([]Product, error)
 }
 
 type impl struct {
-	weaver.Implements[T]
+	weaver.Implements[ProductCatalogService]
 
 	extraLatency time.Duration
 

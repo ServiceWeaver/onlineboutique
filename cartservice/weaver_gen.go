@@ -16,22 +16,22 @@ import (
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/onlineboutique/cartservice/T",
-		Iface: reflect.TypeOf((*T)(nil)).Elem(),
+		Name:  "github.com/ServiceWeaver/onlineboutique/cartservice/CartService",
+		Iface: reflect.TypeOf((*CartService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "AddItem", Remote: false}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "EmptyCart", Remote: false}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "GetCart", Remote: false})}
+			return cartService_local_stub{impl: impl.(CartService), tracer: tracer, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "AddItem", Remote: false}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "EmptyCart", Remote: false}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "GetCart", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "AddItem", Remote: true}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "EmptyCart", Remote: true}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/T", Method: "GetCart", Remote: true})}
+			return cartService_client_stub{stub: stub, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "AddItem", Remote: true}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "EmptyCart", Remote: true}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "GetCart", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
-			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+			return cartService_server_stub{impl: impl.(CartService), addLoad: addLoad}
 		},
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
-			return t_reflect_stub{caller: caller}
+			return cartService_reflect_stub{caller: caller}
 		},
-		RefData: "⟦f3d1cb6d:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/cartservice/T→github.com/ServiceWeaver/onlineboutique/cartservice/cartCache⟧\n",
+		RefData: "⟦dccb8147:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/cartservice/CartService→github.com/ServiceWeaver/onlineboutique/cartservice/cartCache⟧\n",
 	})
 	codegen.Register(codegen.Registration{
 		Name:   "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache",
@@ -55,7 +55,7 @@ func init() {
 }
 
 // weaver.InstanceOf checks.
-var _ weaver.InstanceOf[T] = (*impl)(nil)
+var _ weaver.InstanceOf[CartService] = (*impl)(nil)
 var _ weaver.InstanceOf[cartCache] = (*cartCacheImpl)(nil)
 
 // weaver.Router checks.
@@ -69,25 +69,25 @@ var _ func(_ context.Context, key string) string = (&cartCacheRouter{}).Remove  
 
 // Local stub implementations.
 
-type t_local_stub struct {
-	impl             T
+type cartService_local_stub struct {
+	impl             CartService
 	tracer           trace.Tracer
 	addItemMetrics   *codegen.MethodMetrics
 	emptyCartMetrics *codegen.MethodMetrics
 	getCartMetrics   *codegen.MethodMetrics
 }
 
-// Check that t_local_stub implements the T interface.
-var _ T = (*t_local_stub)(nil)
+// Check that cartService_local_stub implements the CartService interface.
+var _ CartService = (*cartService_local_stub)(nil)
 
-func (s t_local_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err error) {
+func (s cartService_local_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err error) {
 	// Update metrics.
 	begin := s.addItemMetrics.Begin()
 	defer func() { s.addItemMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "cartservice.T.AddItem", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "cartservice.CartService.AddItem", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -100,14 +100,14 @@ func (s t_local_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err 
 	return s.impl.AddItem(ctx, a0, a1)
 }
 
-func (s t_local_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
+func (s cartService_local_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
 	// Update metrics.
 	begin := s.emptyCartMetrics.Begin()
 	defer func() { s.emptyCartMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "cartservice.T.EmptyCart", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "cartservice.CartService.EmptyCart", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -120,14 +120,14 @@ func (s t_local_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
 	return s.impl.EmptyCart(ctx, a0)
 }
 
-func (s t_local_stub) GetCart(ctx context.Context, a0 string) (r0 []CartItem, err error) {
+func (s cartService_local_stub) GetCart(ctx context.Context, a0 string) (r0 []CartItem, err error) {
 	// Update metrics.
 	begin := s.getCartMetrics.Begin()
 	defer func() { s.getCartMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "cartservice.T.GetCart", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "cartservice.CartService.GetCart", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -213,17 +213,17 @@ func (s cartCache_local_stub) Remove(ctx context.Context, a0 string) (r0 bool, e
 
 // Client stub implementations.
 
-type t_client_stub struct {
+type cartService_client_stub struct {
 	stub             codegen.Stub
 	addItemMetrics   *codegen.MethodMetrics
 	emptyCartMetrics *codegen.MethodMetrics
 	getCartMetrics   *codegen.MethodMetrics
 }
 
-// Check that t_client_stub implements the T interface.
-var _ T = (*t_client_stub)(nil)
+// Check that cartService_client_stub implements the CartService interface.
+var _ CartService = (*cartService_client_stub)(nil)
 
-func (s t_client_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err error) {
+func (s cartService_client_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.addItemMetrics.Begin()
@@ -232,7 +232,7 @@ func (s t_client_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "cartservice.T.AddItem", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "cartservice.CartService.AddItem", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -280,7 +280,7 @@ func (s t_client_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err
 	return
 }
 
-func (s t_client_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
+func (s cartService_client_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.emptyCartMetrics.Begin()
@@ -289,7 +289,7 @@ func (s t_client_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "cartservice.T.EmptyCart", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "cartservice.CartService.EmptyCart", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -335,7 +335,7 @@ func (s t_client_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
 	return
 }
 
-func (s t_client_stub) GetCart(ctx context.Context, a0 string) (r0 []CartItem, err error) {
+func (s cartService_client_stub) GetCart(ctx context.Context, a0 string) (r0 []CartItem, err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.getCartMetrics.Begin()
@@ -344,7 +344,7 @@ func (s t_client_stub) GetCart(ctx context.Context, a0 string) (r0 []CartItem, e
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "cartservice.T.GetCart", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "cartservice.CartService.GetCart", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -578,7 +578,7 @@ func (s cartCache_client_stub) Remove(ctx context.Context, a0 string) (r0 bool, 
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.22.0 (codegen
+ERROR: You generated this file with 'weaver generate' (devel) (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
@@ -598,16 +598,16 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 // Server stub implementations.
 
-type t_server_stub struct {
-	impl    T
+type cartService_server_stub struct {
+	impl    CartService
 	addLoad func(key uint64, load float64)
 }
 
-// Check that t_server_stub implements the codegen.Server interface.
-var _ codegen.Server = (*t_server_stub)(nil)
+// Check that cartService_server_stub implements the codegen.Server interface.
+var _ codegen.Server = (*cartService_server_stub)(nil)
 
 // GetStubFn implements the codegen.Server interface.
-func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
+func (s cartService_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
 	switch method {
 	case "AddItem":
 		return s.addItem
@@ -620,7 +620,7 @@ func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args [
 	}
 }
 
-func (s t_server_stub) addItem(ctx context.Context, args []byte) (res []byte, err error) {
+func (s cartService_server_stub) addItem(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -646,7 +646,7 @@ func (s t_server_stub) addItem(ctx context.Context, args []byte) (res []byte, er
 	return enc.Data(), nil
 }
 
-func (s t_server_stub) emptyCart(ctx context.Context, args []byte) (res []byte, err error) {
+func (s cartService_server_stub) emptyCart(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -670,7 +670,7 @@ func (s t_server_stub) emptyCart(ctx context.Context, args []byte) (res []byte, 
 	return enc.Data(), nil
 }
 
-func (s t_server_stub) getCart(ctx context.Context, args []byte) (res []byte, err error) {
+func (s cartService_server_stub) getCart(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -801,24 +801,24 @@ func (s cartCache_server_stub) remove(ctx context.Context, args []byte) (res []b
 
 // Reflect stub implementations.
 
-type t_reflect_stub struct {
+type cartService_reflect_stub struct {
 	caller func(string, context.Context, []any, []any) error
 }
 
-// Check that t_reflect_stub implements the T interface.
-var _ T = (*t_reflect_stub)(nil)
+// Check that cartService_reflect_stub implements the CartService interface.
+var _ CartService = (*cartService_reflect_stub)(nil)
 
-func (s t_reflect_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err error) {
+func (s cartService_reflect_stub) AddItem(ctx context.Context, a0 string, a1 CartItem) (err error) {
 	err = s.caller("AddItem", ctx, []any{a0, a1}, []any{})
 	return
 }
 
-func (s t_reflect_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
+func (s cartService_reflect_stub) EmptyCart(ctx context.Context, a0 string) (err error) {
 	err = s.caller("EmptyCart", ctx, []any{a0}, []any{})
 	return
 }
 
-func (s t_reflect_stub) GetCart(ctx context.Context, a0 string) (r0 []CartItem, err error) {
+func (s cartService_reflect_stub) GetCart(ctx context.Context, a0 string) (r0 []CartItem, err error) {
 	err = s.caller("GetCart", ctx, []any{a0}, []any{&r0})
 	return
 }

@@ -25,7 +25,6 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/onlineboutique/adservice"
 	"github.com/ServiceWeaver/onlineboutique/cartservice"
 	"github.com/ServiceWeaver/onlineboutique/checkoutservice"
@@ -33,6 +32,7 @@ import (
 	"github.com/ServiceWeaver/onlineboutique/productcatalogservice"
 	"github.com/ServiceWeaver/onlineboutique/recommendationservice"
 	"github.com/ServiceWeaver/onlineboutique/shippingservice"
+	"github.com/ServiceWeaver/weaver"
 )
 
 const (
@@ -73,13 +73,13 @@ type Server struct {
 	platform platformDetails
 	hostname string
 
-	catalogService        weaver.Ref[productcatalogservice.T]
-	currencyService       weaver.Ref[currencyservice.T]
-	cartService           weaver.Ref[cartservice.T]
-	recommendationService weaver.Ref[recommendationservice.T]
-	checkoutService       weaver.Ref[checkoutservice.T]
-	shippingService       weaver.Ref[shippingservice.T]
-	adService             weaver.Ref[adservice.T]
+	catalogService        weaver.Ref[productcatalogservice.ProductCatalogService]
+	currencyService       weaver.Ref[currencyservice.CurrencyService]
+	cartService           weaver.Ref[cartservice.CartService]
+	recommendationService weaver.Ref[recommendationservice.RecommendationService]
+	checkoutService       weaver.Ref[checkoutservice.CheckoutService]
+	shippingService       weaver.Ref[shippingservice.ShippingService]
+	adService             weaver.Ref[adservice.AdService]
 
 	boutique weaver.Listener
 }

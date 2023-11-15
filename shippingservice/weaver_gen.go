@@ -18,51 +18,51 @@ import (
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/onlineboutique/shippingservice/T",
-		Iface: reflect.TypeOf((*T)(nil)).Elem(),
+		Name:  "github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService",
+		Iface: reflect.TypeOf((*ShippingService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, getQuoteMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/shippingservice/T", Method: "GetQuote", Remote: false}), shipOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/shippingservice/T", Method: "ShipOrder", Remote: false})}
+			return shippingService_local_stub{impl: impl.(ShippingService), tracer: tracer, getQuoteMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService", Method: "GetQuote", Remote: false}), shipOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService", Method: "ShipOrder", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, getQuoteMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/shippingservice/T", Method: "GetQuote", Remote: true}), shipOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/shippingservice/T", Method: "ShipOrder", Remote: true})}
+			return shippingService_client_stub{stub: stub, getQuoteMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService", Method: "GetQuote", Remote: true}), shipOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService", Method: "ShipOrder", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
-			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+			return shippingService_server_stub{impl: impl.(ShippingService), addLoad: addLoad}
 		},
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
-			return t_reflect_stub{caller: caller}
+			return shippingService_reflect_stub{caller: caller}
 		},
 		RefData: "",
 	})
 }
 
 // weaver.InstanceOf checks.
-var _ weaver.InstanceOf[T] = (*impl)(nil)
+var _ weaver.InstanceOf[ShippingService] = (*impl)(nil)
 
 // weaver.Router checks.
 var _ weaver.Unrouted = (*impl)(nil)
 
 // Local stub implementations.
 
-type t_local_stub struct {
-	impl             T
+type shippingService_local_stub struct {
+	impl             ShippingService
 	tracer           trace.Tracer
 	getQuoteMetrics  *codegen.MethodMetrics
 	shipOrderMetrics *codegen.MethodMetrics
 }
 
-// Check that t_local_stub implements the T interface.
-var _ T = (*t_local_stub)(nil)
+// Check that shippingService_local_stub implements the ShippingService interface.
+var _ ShippingService = (*shippingService_local_stub)(nil)
 
-func (s t_local_stub) GetQuote(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 money.T, err error) {
+func (s shippingService_local_stub) GetQuote(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 money.T, err error) {
 	// Update metrics.
 	begin := s.getQuoteMetrics.Begin()
 	defer func() { s.getQuoteMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "shippingservice.T.GetQuote", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "shippingservice.ShippingService.GetQuote", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -75,14 +75,14 @@ func (s t_local_stub) GetQuote(ctx context.Context, a0 Address, a1 []cartservice
 	return s.impl.GetQuote(ctx, a0, a1)
 }
 
-func (s t_local_stub) ShipOrder(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 string, err error) {
+func (s shippingService_local_stub) ShipOrder(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 string, err error) {
 	// Update metrics.
 	begin := s.shipOrderMetrics.Begin()
 	defer func() { s.shipOrderMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "shippingservice.T.ShipOrder", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "shippingservice.ShippingService.ShipOrder", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -97,16 +97,16 @@ func (s t_local_stub) ShipOrder(ctx context.Context, a0 Address, a1 []cartservic
 
 // Client stub implementations.
 
-type t_client_stub struct {
+type shippingService_client_stub struct {
 	stub             codegen.Stub
 	getQuoteMetrics  *codegen.MethodMetrics
 	shipOrderMetrics *codegen.MethodMetrics
 }
 
-// Check that t_client_stub implements the T interface.
-var _ T = (*t_client_stub)(nil)
+// Check that shippingService_client_stub implements the ShippingService interface.
+var _ ShippingService = (*shippingService_client_stub)(nil)
 
-func (s t_client_stub) GetQuote(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 money.T, err error) {
+func (s shippingService_client_stub) GetQuote(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 money.T, err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.getQuoteMetrics.Begin()
@@ -115,7 +115,7 @@ func (s t_client_stub) GetQuote(ctx context.Context, a0 Address, a1 []cartservic
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "shippingservice.T.GetQuote", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "shippingservice.ShippingService.GetQuote", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -158,7 +158,7 @@ func (s t_client_stub) GetQuote(ctx context.Context, a0 Address, a1 []cartservic
 	return
 }
 
-func (s t_client_stub) ShipOrder(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 string, err error) {
+func (s shippingService_client_stub) ShipOrder(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 string, err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.shipOrderMetrics.Begin()
@@ -167,7 +167,7 @@ func (s t_client_stub) ShipOrder(ctx context.Context, a0 Address, a1 []cartservi
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "shippingservice.T.ShipOrder", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "shippingservice.ShippingService.ShipOrder", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -215,7 +215,7 @@ func (s t_client_stub) ShipOrder(ctx context.Context, a0 Address, a1 []cartservi
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.22.0 (codegen
+ERROR: You generated this file with 'weaver generate' (devel) (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
@@ -235,16 +235,16 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 // Server stub implementations.
 
-type t_server_stub struct {
-	impl    T
+type shippingService_server_stub struct {
+	impl    ShippingService
 	addLoad func(key uint64, load float64)
 }
 
-// Check that t_server_stub implements the codegen.Server interface.
-var _ codegen.Server = (*t_server_stub)(nil)
+// Check that shippingService_server_stub implements the codegen.Server interface.
+var _ codegen.Server = (*shippingService_server_stub)(nil)
 
 // GetStubFn implements the codegen.Server interface.
-func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
+func (s shippingService_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
 	switch method {
 	case "GetQuote":
 		return s.getQuote
@@ -255,7 +255,7 @@ func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args [
 	}
 }
 
-func (s t_server_stub) getQuote(ctx context.Context, args []byte) (res []byte, err error) {
+func (s shippingService_server_stub) getQuote(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -282,7 +282,7 @@ func (s t_server_stub) getQuote(ctx context.Context, args []byte) (res []byte, e
 	return enc.Data(), nil
 }
 
-func (s t_server_stub) shipOrder(ctx context.Context, args []byte) (res []byte, err error) {
+func (s shippingService_server_stub) shipOrder(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -311,19 +311,19 @@ func (s t_server_stub) shipOrder(ctx context.Context, args []byte) (res []byte, 
 
 // Reflect stub implementations.
 
-type t_reflect_stub struct {
+type shippingService_reflect_stub struct {
 	caller func(string, context.Context, []any, []any) error
 }
 
-// Check that t_reflect_stub implements the T interface.
-var _ T = (*t_reflect_stub)(nil)
+// Check that shippingService_reflect_stub implements the ShippingService interface.
+var _ ShippingService = (*shippingService_reflect_stub)(nil)
 
-func (s t_reflect_stub) GetQuote(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 money.T, err error) {
+func (s shippingService_reflect_stub) GetQuote(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 money.T, err error) {
 	err = s.caller("GetQuote", ctx, []any{a0, a1}, []any{&r0})
 	return
 }
 
-func (s t_reflect_stub) ShipOrder(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 string, err error) {
+func (s shippingService_reflect_stub) ShipOrder(ctx context.Context, a0 Address, a1 []cartservice.CartItem) (r0 string, err error) {
 	err = s.caller("ShipOrder", ctx, []any{a0, a1}, []any{&r0})
 	return
 }

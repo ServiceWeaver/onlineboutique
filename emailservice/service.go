@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"html/template"
 
-	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/onlineboutique/types"
+	"github.com/ServiceWeaver/weaver"
 )
 
 var (
@@ -36,12 +36,12 @@ var (
 		Parse(tmplData))
 )
 
-type T interface {
+type EmailService interface {
 	SendOrderConfirmation(ctx context.Context, email string, order types.Order) error
 }
 
 type impl struct {
-	weaver.Implements[T]
+	weaver.Implements[EmailService]
 }
 
 // SendOrderConfirmation sends the confirmation email for the order to the
