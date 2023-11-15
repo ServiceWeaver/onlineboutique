@@ -15,50 +15,50 @@ import (
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/onlineboutique/recommendationservice/T",
-		Iface: reflect.TypeOf((*T)(nil)).Elem(),
+		Name:  "github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService",
+		Iface: reflect.TypeOf((*RecommendationService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, listRecommendationsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/recommendationservice/T", Method: "ListRecommendations", Remote: false})}
+			return recommendationService_local_stub{impl: impl.(RecommendationService), tracer: tracer, listRecommendationsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService", Method: "ListRecommendations", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, listRecommendationsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/recommendationservice/T", Method: "ListRecommendations", Remote: true})}
+			return recommendationService_client_stub{stub: stub, listRecommendationsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService", Method: "ListRecommendations", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
-			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+			return recommendationService_server_stub{impl: impl.(RecommendationService), addLoad: addLoad}
 		},
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
-			return t_reflect_stub{caller: caller}
+			return recommendationService_reflect_stub{caller: caller}
 		},
-		RefData: "⟦5aeafd23:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/recommendationservice/T→github.com/ServiceWeaver/onlineboutique/productcatalogservice/T⟧\n",
+		RefData: "⟦f266fa1e:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService→github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService⟧\n",
 	})
 }
 
 // weaver.InstanceOf checks.
-var _ weaver.InstanceOf[T] = (*impl)(nil)
+var _ weaver.InstanceOf[RecommendationService] = (*impl)(nil)
 
 // weaver.Router checks.
 var _ weaver.Unrouted = (*impl)(nil)
 
 // Local stub implementations.
 
-type t_local_stub struct {
-	impl                       T
+type recommendationService_local_stub struct {
+	impl                       RecommendationService
 	tracer                     trace.Tracer
 	listRecommendationsMetrics *codegen.MethodMetrics
 }
 
-// Check that t_local_stub implements the T interface.
-var _ T = (*t_local_stub)(nil)
+// Check that recommendationService_local_stub implements the RecommendationService interface.
+var _ RecommendationService = (*recommendationService_local_stub)(nil)
 
-func (s t_local_stub) ListRecommendations(ctx context.Context, a0 string, a1 []string) (r0 []string, err error) {
+func (s recommendationService_local_stub) ListRecommendations(ctx context.Context, a0 string, a1 []string) (r0 []string, err error) {
 	// Update metrics.
 	begin := s.listRecommendationsMetrics.Begin()
 	defer func() { s.listRecommendationsMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "recommendationservice.T.ListRecommendations", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "recommendationservice.RecommendationService.ListRecommendations", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -73,15 +73,15 @@ func (s t_local_stub) ListRecommendations(ctx context.Context, a0 string, a1 []s
 
 // Client stub implementations.
 
-type t_client_stub struct {
+type recommendationService_client_stub struct {
 	stub                       codegen.Stub
 	listRecommendationsMetrics *codegen.MethodMetrics
 }
 
-// Check that t_client_stub implements the T interface.
-var _ T = (*t_client_stub)(nil)
+// Check that recommendationService_client_stub implements the RecommendationService interface.
+var _ RecommendationService = (*recommendationService_client_stub)(nil)
 
-func (s t_client_stub) ListRecommendations(ctx context.Context, a0 string, a1 []string) (r0 []string, err error) {
+func (s recommendationService_client_stub) ListRecommendations(ctx context.Context, a0 string, a1 []string) (r0 []string, err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.listRecommendationsMetrics.Begin()
@@ -90,7 +90,7 @@ func (s t_client_stub) ListRecommendations(ctx context.Context, a0 string, a1 []
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "recommendationservice.T.ListRecommendations", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "recommendationservice.RecommendationService.ListRecommendations", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -138,7 +138,7 @@ func (s t_client_stub) ListRecommendations(ctx context.Context, a0 string, a1 []
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.22.0 (codegen
+ERROR: You generated this file with 'weaver generate' (devel) (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
@@ -158,16 +158,16 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 // Server stub implementations.
 
-type t_server_stub struct {
-	impl    T
+type recommendationService_server_stub struct {
+	impl    RecommendationService
 	addLoad func(key uint64, load float64)
 }
 
-// Check that t_server_stub implements the codegen.Server interface.
-var _ codegen.Server = (*t_server_stub)(nil)
+// Check that recommendationService_server_stub implements the codegen.Server interface.
+var _ codegen.Server = (*recommendationService_server_stub)(nil)
 
 // GetStubFn implements the codegen.Server interface.
-func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
+func (s recommendationService_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
 	switch method {
 	case "ListRecommendations":
 		return s.listRecommendations
@@ -176,7 +176,7 @@ func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args [
 	}
 }
 
-func (s t_server_stub) listRecommendations(ctx context.Context, args []byte) (res []byte, err error) {
+func (s recommendationService_server_stub) listRecommendations(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -205,14 +205,14 @@ func (s t_server_stub) listRecommendations(ctx context.Context, args []byte) (re
 
 // Reflect stub implementations.
 
-type t_reflect_stub struct {
+type recommendationService_reflect_stub struct {
 	caller func(string, context.Context, []any, []any) error
 }
 
-// Check that t_reflect_stub implements the T interface.
-var _ T = (*t_reflect_stub)(nil)
+// Check that recommendationService_reflect_stub implements the RecommendationService interface.
+var _ RecommendationService = (*recommendationService_reflect_stub)(nil)
 
-func (s t_reflect_stub) ListRecommendations(ctx context.Context, a0 string, a1 []string) (r0 []string, err error) {
+func (s recommendationService_reflect_stub) ListRecommendations(ctx context.Context, a0 string, a1 []string) (r0 []string, err error) {
 	err = s.caller("ListRecommendations", ctx, []any{a0, a1}, []any{&r0})
 	return
 }

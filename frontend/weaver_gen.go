@@ -27,7 +27,7 @@ func init() {
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
 			return main_reflect_stub{caller: caller}
 		},
-		RefData: "⟦363c77ec:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/productcatalogservice/T⟧\n⟦16def78d:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/currencyservice/T⟧\n⟦40736322:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/cartservice/T⟧\n⟦5c103a64:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/recommendationservice/T⟧\n⟦3b7b3945:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/checkoutservice/T⟧\n⟦04e480c2:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/shippingservice/T⟧\n⟦88607723:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/adservice/T⟧\n⟦29a161ab:wEaVeRlIsTeNeRs:github.com/ServiceWeaver/weaver/Main→boutique⟧\n",
+		RefData: "⟦a4d40c1c:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService⟧\n⟦6dedcea3:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService⟧\n⟦0cb0000d:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/cartservice/CartService⟧\n⟦12f954f2:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/recommendationservice/RecommendationService⟧\n⟦107bd009:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService⟧\n⟦7d051df1:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService⟧\n⟦4c49de02:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→github.com/ServiceWeaver/onlineboutique/adservice/AdService⟧\n⟦29a161ab:wEaVeRlIsTeNeRs:github.com/ServiceWeaver/weaver/Main→boutique⟧\n",
 	})
 }
 
@@ -61,7 +61,7 @@ var _ weaver.Main = (*main_client_stub)(nil)
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.22.0 (codegen
+ERROR: You generated this file with 'weaver generate' (devel) (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.

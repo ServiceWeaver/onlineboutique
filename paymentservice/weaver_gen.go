@@ -18,50 +18,50 @@ import (
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/onlineboutique/paymentservice/T",
-		Iface: reflect.TypeOf((*T)(nil)).Elem(),
+		Name:  "github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService",
+		Iface: reflect.TypeOf((*PaymentService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, chargeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/paymentservice/T", Method: "Charge", Remote: false})}
+			return paymentService_local_stub{impl: impl.(PaymentService), tracer: tracer, chargeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService", Method: "Charge", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, chargeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/paymentservice/T", Method: "Charge", Remote: true})}
+			return paymentService_client_stub{stub: stub, chargeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService", Method: "Charge", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
-			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+			return paymentService_server_stub{impl: impl.(PaymentService), addLoad: addLoad}
 		},
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
-			return t_reflect_stub{caller: caller}
+			return paymentService_reflect_stub{caller: caller}
 		},
 		RefData: "",
 	})
 }
 
 // weaver.InstanceOf checks.
-var _ weaver.InstanceOf[T] = (*impl)(nil)
+var _ weaver.InstanceOf[PaymentService] = (*impl)(nil)
 
 // weaver.Router checks.
 var _ weaver.Unrouted = (*impl)(nil)
 
 // Local stub implementations.
 
-type t_local_stub struct {
-	impl          T
+type paymentService_local_stub struct {
+	impl          PaymentService
 	tracer        trace.Tracer
 	chargeMetrics *codegen.MethodMetrics
 }
 
-// Check that t_local_stub implements the T interface.
-var _ T = (*t_local_stub)(nil)
+// Check that paymentService_local_stub implements the PaymentService interface.
+var _ PaymentService = (*paymentService_local_stub)(nil)
 
-func (s t_local_stub) Charge(ctx context.Context, a0 money.T, a1 CreditCardInfo) (r0 string, err error) {
+func (s paymentService_local_stub) Charge(ctx context.Context, a0 money.T, a1 CreditCardInfo) (r0 string, err error) {
 	// Update metrics.
 	begin := s.chargeMetrics.Begin()
 	defer func() { s.chargeMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "paymentservice.T.Charge", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "paymentservice.PaymentService.Charge", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -76,15 +76,15 @@ func (s t_local_stub) Charge(ctx context.Context, a0 money.T, a1 CreditCardInfo)
 
 // Client stub implementations.
 
-type t_client_stub struct {
+type paymentService_client_stub struct {
 	stub          codegen.Stub
 	chargeMetrics *codegen.MethodMetrics
 }
 
-// Check that t_client_stub implements the T interface.
-var _ T = (*t_client_stub)(nil)
+// Check that paymentService_client_stub implements the PaymentService interface.
+var _ PaymentService = (*paymentService_client_stub)(nil)
 
-func (s t_client_stub) Charge(ctx context.Context, a0 money.T, a1 CreditCardInfo) (r0 string, err error) {
+func (s paymentService_client_stub) Charge(ctx context.Context, a0 money.T, a1 CreditCardInfo) (r0 string, err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.chargeMetrics.Begin()
@@ -93,7 +93,7 @@ func (s t_client_stub) Charge(ctx context.Context, a0 money.T, a1 CreditCardInfo
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "paymentservice.T.Charge", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "paymentservice.PaymentService.Charge", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -141,7 +141,7 @@ func (s t_client_stub) Charge(ctx context.Context, a0 money.T, a1 CreditCardInfo
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.22.0 (codegen
+ERROR: You generated this file with 'weaver generate' (devel) (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
@@ -161,16 +161,16 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 // Server stub implementations.
 
-type t_server_stub struct {
-	impl    T
+type paymentService_server_stub struct {
+	impl    PaymentService
 	addLoad func(key uint64, load float64)
 }
 
-// Check that t_server_stub implements the codegen.Server interface.
-var _ codegen.Server = (*t_server_stub)(nil)
+// Check that paymentService_server_stub implements the codegen.Server interface.
+var _ codegen.Server = (*paymentService_server_stub)(nil)
 
 // GetStubFn implements the codegen.Server interface.
-func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
+func (s paymentService_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
 	switch method {
 	case "Charge":
 		return s.charge
@@ -179,7 +179,7 @@ func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args [
 	}
 }
 
-func (s t_server_stub) charge(ctx context.Context, args []byte) (res []byte, err error) {
+func (s paymentService_server_stub) charge(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -208,14 +208,14 @@ func (s t_server_stub) charge(ctx context.Context, args []byte) (res []byte, err
 
 // Reflect stub implementations.
 
-type t_reflect_stub struct {
+type paymentService_reflect_stub struct {
 	caller func(string, context.Context, []any, []any) error
 }
 
-// Check that t_reflect_stub implements the T interface.
-var _ T = (*t_reflect_stub)(nil)
+// Check that paymentService_reflect_stub implements the PaymentService interface.
+var _ PaymentService = (*paymentService_reflect_stub)(nil)
 
-func (s t_reflect_stub) Charge(ctx context.Context, a0 money.T, a1 CreditCardInfo) (r0 string, err error) {
+func (s paymentService_reflect_stub) Charge(ctx context.Context, a0 money.T, a1 CreditCardInfo) (r0 string, err error) {
 	err = s.caller("Charge", ctx, []any{a0, a1}, []any{&r0})
 	return
 }

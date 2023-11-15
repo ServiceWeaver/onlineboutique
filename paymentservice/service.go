@@ -18,8 +18,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/onlineboutique/types/money"
+	"github.com/ServiceWeaver/weaver"
 )
 
 type CreditCardInfo struct {
@@ -39,12 +39,12 @@ func (c CreditCardInfo) LastFour() string {
 	return num
 }
 
-type T interface {
+type PaymentService interface {
 	Charge(ctx context.Context, amount money.T, card CreditCardInfo) (string, error)
 }
 
 type impl struct {
-	weaver.Implements[T]
+	weaver.Implements[PaymentService]
 }
 
 // Charge charges the given amount of money to the given credit card, returning

@@ -18,7 +18,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/onlineboutique/cartservice"
 	"github.com/ServiceWeaver/onlineboutique/currencyservice"
 	"github.com/ServiceWeaver/onlineboutique/emailservice"
@@ -27,6 +26,7 @@ import (
 	"github.com/ServiceWeaver/onlineboutique/shippingservice"
 	"github.com/ServiceWeaver/onlineboutique/types"
 	"github.com/ServiceWeaver/onlineboutique/types/money"
+	"github.com/ServiceWeaver/weaver"
 	"github.com/google/uuid"
 )
 
@@ -39,19 +39,19 @@ type PlaceOrderRequest struct {
 	CreditCard   paymentservice.CreditCardInfo
 }
 
-type T interface {
+type CheckoutService interface {
 	PlaceOrder(ctx context.Context, req PlaceOrderRequest) (types.Order, error)
 }
 
 type impl struct {
-	weaver.Implements[T]
+	weaver.Implements[CheckoutService]
 
-	catalogService  weaver.Ref[productcatalogservice.T]
-	cartService     weaver.Ref[cartservice.T]
-	currencyService weaver.Ref[currencyservice.T]
-	shippingService weaver.Ref[shippingservice.T]
-	emailService    weaver.Ref[emailservice.T]
-	paymentService  weaver.Ref[paymentservice.T]
+	catalogService  weaver.Ref[productcatalogservice.ProductCatalogService]
+	cartService     weaver.Ref[cartservice.CartService]
+	currencyService weaver.Ref[currencyservice.CurrencyService]
+	shippingService weaver.Ref[shippingservice.ShippingService]
+	emailService    weaver.Ref[emailservice.EmailService]
+	paymentService  weaver.Ref[paymentservice.PaymentService]
 }
 
 func (s *impl) PlaceOrder(ctx context.Context, req PlaceOrderRequest) (types.Order, error) {

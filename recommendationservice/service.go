@@ -18,17 +18,17 @@ import (
 	"context"
 	"math/rand"
 
-	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/onlineboutique/productcatalogservice"
+	"github.com/ServiceWeaver/weaver"
 )
 
-type T interface {
+type RecommendationService interface {
 	ListRecommendations(ctx context.Context, userID string, productIDs []string) ([]string, error)
 }
 
 type impl struct {
-	weaver.Implements[T]
-	catalogService weaver.Ref[productcatalogservice.T]
+	weaver.Implements[RecommendationService]
+	catalogService weaver.Ref[productcatalogservice.ProductCatalogService]
 }
 
 func (s *impl) ListRecommendations(ctx context.Context, userID string, userProductIDs []string) ([]string, error) {

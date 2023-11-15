@@ -19,50 +19,50 @@ import (
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/onlineboutique/checkoutservice/T",
-		Iface: reflect.TypeOf((*T)(nil)).Elem(),
+		Name:  "github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService",
+		Iface: reflect.TypeOf((*CheckoutService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return t_local_stub{impl: impl.(T), tracer: tracer, placeOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/checkoutservice/T", Method: "PlaceOrder", Remote: false})}
+			return checkoutService_local_stub{impl: impl.(CheckoutService), tracer: tracer, placeOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService", Method: "PlaceOrder", Remote: false})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return t_client_stub{stub: stub, placeOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/checkoutservice/T", Method: "PlaceOrder", Remote: true})}
+			return checkoutService_client_stub{stub: stub, placeOrderMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService", Method: "PlaceOrder", Remote: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
-			return t_server_stub{impl: impl.(T), addLoad: addLoad}
+			return checkoutService_server_stub{impl: impl.(CheckoutService), addLoad: addLoad}
 		},
 		ReflectStubFn: func(caller func(string, context.Context, []any, []any) error) any {
-			return t_reflect_stub{caller: caller}
+			return checkoutService_reflect_stub{caller: caller}
 		},
-		RefData: "⟦bd41e485:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/productcatalogservice/T⟧\n⟦d54c5b5d:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/cartservice/T⟧\n⟦fc39f6a9:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/currencyservice/T⟧\n⟦06129fa8:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/shippingservice/T⟧\n⟦176aaf8f:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/emailservice/T⟧\n⟦b148055f:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/T→github.com/ServiceWeaver/onlineboutique/paymentservice/T⟧\n",
+		RefData: "⟦3c20d0cc:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService→github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService⟧\n⟦eea5d395:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService→github.com/ServiceWeaver/onlineboutique/cartservice/CartService⟧\n⟦c2b535dd:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService→github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService⟧\n⟦48b34240:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService→github.com/ServiceWeaver/onlineboutique/shippingservice/ShippingService⟧\n⟦e3a5f8ee:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService→github.com/ServiceWeaver/onlineboutique/emailservice/EmailService⟧\n⟦3e18f39d:wEaVeReDgE:github.com/ServiceWeaver/onlineboutique/checkoutservice/CheckoutService→github.com/ServiceWeaver/onlineboutique/paymentservice/PaymentService⟧\n",
 	})
 }
 
 // weaver.InstanceOf checks.
-var _ weaver.InstanceOf[T] = (*impl)(nil)
+var _ weaver.InstanceOf[CheckoutService] = (*impl)(nil)
 
 // weaver.Router checks.
 var _ weaver.Unrouted = (*impl)(nil)
 
 // Local stub implementations.
 
-type t_local_stub struct {
-	impl              T
+type checkoutService_local_stub struct {
+	impl              CheckoutService
 	tracer            trace.Tracer
 	placeOrderMetrics *codegen.MethodMetrics
 }
 
-// Check that t_local_stub implements the T interface.
-var _ T = (*t_local_stub)(nil)
+// Check that checkoutService_local_stub implements the CheckoutService interface.
+var _ CheckoutService = (*checkoutService_local_stub)(nil)
 
-func (s t_local_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0 types.Order, err error) {
+func (s checkoutService_local_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0 types.Order, err error) {
 	// Update metrics.
 	begin := s.placeOrderMetrics.Begin()
 	defer func() { s.placeOrderMetrics.End(begin, err != nil, 0, 0) }()
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.tracer.Start(ctx, "checkoutservice.T.PlaceOrder", trace.WithSpanKind(trace.SpanKindInternal))
+		ctx, span = s.tracer.Start(ctx, "checkoutservice.CheckoutService.PlaceOrder", trace.WithSpanKind(trace.SpanKindInternal))
 		defer func() {
 			if err != nil {
 				span.RecordError(err)
@@ -77,15 +77,15 @@ func (s t_local_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0 
 
 // Client stub implementations.
 
-type t_client_stub struct {
+type checkoutService_client_stub struct {
 	stub              codegen.Stub
 	placeOrderMetrics *codegen.MethodMetrics
 }
 
-// Check that t_client_stub implements the T interface.
-var _ T = (*t_client_stub)(nil)
+// Check that checkoutService_client_stub implements the CheckoutService interface.
+var _ CheckoutService = (*checkoutService_client_stub)(nil)
 
-func (s t_client_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0 types.Order, err error) {
+func (s checkoutService_client_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0 types.Order, err error) {
 	// Update metrics.
 	var requestBytes, replyBytes int
 	begin := s.placeOrderMetrics.Begin()
@@ -94,7 +94,7 @@ func (s t_client_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
 		// Create a child span for this method.
-		ctx, span = s.stub.Tracer().Start(ctx, "checkoutservice.T.PlaceOrder", trace.WithSpanKind(trace.SpanKindClient))
+		ctx, span = s.stub.Tracer().Start(ctx, "checkoutservice.CheckoutService.PlaceOrder", trace.WithSpanKind(trace.SpanKindClient))
 	}
 
 	defer func() {
@@ -141,7 +141,7 @@ func (s t_client_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.22.0 (codegen
+ERROR: You generated this file with 'weaver generate' (devel) (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
@@ -161,16 +161,16 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 // Server stub implementations.
 
-type t_server_stub struct {
-	impl    T
+type checkoutService_server_stub struct {
+	impl    CheckoutService
 	addLoad func(key uint64, load float64)
 }
 
-// Check that t_server_stub implements the codegen.Server interface.
-var _ codegen.Server = (*t_server_stub)(nil)
+// Check that checkoutService_server_stub implements the codegen.Server interface.
+var _ codegen.Server = (*checkoutService_server_stub)(nil)
 
 // GetStubFn implements the codegen.Server interface.
-func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
+func (s checkoutService_server_stub) GetStubFn(method string) func(ctx context.Context, args []byte) ([]byte, error) {
 	switch method {
 	case "PlaceOrder":
 		return s.placeOrder
@@ -179,7 +179,7 @@ func (s t_server_stub) GetStubFn(method string) func(ctx context.Context, args [
 	}
 }
 
-func (s t_server_stub) placeOrder(ctx context.Context, args []byte) (res []byte, err error) {
+func (s checkoutService_server_stub) placeOrder(ctx context.Context, args []byte) (res []byte, err error) {
 	// Catch and return any panics detected during encoding/decoding/rpc.
 	defer func() {
 		if err == nil {
@@ -206,14 +206,14 @@ func (s t_server_stub) placeOrder(ctx context.Context, args []byte) (res []byte,
 
 // Reflect stub implementations.
 
-type t_reflect_stub struct {
+type checkoutService_reflect_stub struct {
 	caller func(string, context.Context, []any, []any) error
 }
 
-// Check that t_reflect_stub implements the T interface.
-var _ T = (*t_reflect_stub)(nil)
+// Check that checkoutService_reflect_stub implements the CheckoutService interface.
+var _ CheckoutService = (*checkoutService_reflect_stub)(nil)
 
-func (s t_reflect_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0 types.Order, err error) {
+func (s checkoutService_reflect_stub) PlaceOrder(ctx context.Context, a0 PlaceOrderRequest) (r0 types.Order, err error) {
 	err = s.caller("PlaceOrder", ctx, []any{a0}, []any{&r0})
 	return
 }

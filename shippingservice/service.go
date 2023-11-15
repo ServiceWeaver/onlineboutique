@@ -18,9 +18,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/ServiceWeaver/weaver"
 	"github.com/ServiceWeaver/onlineboutique/cartservice"
 	"github.com/ServiceWeaver/onlineboutique/types/money"
+	"github.com/ServiceWeaver/weaver"
 )
 
 type Address struct {
@@ -32,13 +32,13 @@ type Address struct {
 	ZipCode       int32
 }
 
-type T interface {
+type ShippingService interface {
 	GetQuote(ctx context.Context, addr Address, items []cartservice.CartItem) (money.T, error)
 	ShipOrder(ctx context.Context, addr Address, items []cartservice.CartItem) (string, error)
 }
 
 type impl struct {
-	weaver.Implements[T]
+	weaver.Implements[ShippingService]
 }
 
 // GetQuote produces a shipping quote (cost) in USD.

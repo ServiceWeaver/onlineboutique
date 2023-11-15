@@ -26,14 +26,14 @@ type CartItem struct {
 	Quantity  int32
 }
 
-type T interface {
+type CartService interface {
 	AddItem(ctx context.Context, userID string, item CartItem) error
 	GetCart(ctx context.Context, userID string) ([]CartItem, error)
 	EmptyCart(ctx context.Context, userID string) error
 }
 
 type impl struct {
-	weaver.Implements[T]
+	weaver.Implements[CartService]
 	cache weaver.Ref[cartCache]
 	store *cartStore
 }
