@@ -138,7 +138,7 @@ func (s adService_client_stub) GetAds(ctx context.Context, a0 []string) (r0 []Ad
 // you run "go build" or "go run".
 var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' (devel) (codegen
+ERROR: You generated this file with 'weaver generate' v0.23.1 (codegen
 version v0.20.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
