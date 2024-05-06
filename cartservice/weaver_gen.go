@@ -20,10 +20,10 @@ func init() {
 		Iface: reflect.TypeOf((*CartService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return cartService_local_stub{impl: impl.(CartService), tracer: tracer, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "AddItem", Remote: false}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "EmptyCart", Remote: false}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "GetCart", Remote: false})}
+			return cartService_local_stub{impl: impl.(CartService), tracer: tracer, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "AddItem", Remote: false, Generated: true}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "EmptyCart", Remote: false, Generated: true}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "GetCart", Remote: false, Generated: true})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return cartService_client_stub{stub: stub, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "AddItem", Remote: true}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "EmptyCart", Remote: true}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "GetCart", Remote: true})}
+			return cartService_client_stub{stub: stub, addItemMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "AddItem", Remote: true, Generated: true}), emptyCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "EmptyCart", Remote: true, Generated: true}), getCartMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/CartService", Method: "GetCart", Remote: true, Generated: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return cartService_server_stub{impl: impl.(CartService), addLoad: addLoad}
@@ -39,10 +39,10 @@ func init() {
 		Impl:   reflect.TypeOf(cartCacheImpl{}),
 		Routed: true,
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return cartCache_local_stub{impl: impl.(cartCache), tracer: tracer, addMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Add", Remote: false}), getMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Get", Remote: false}), removeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Remove", Remote: false})}
+			return cartCache_local_stub{impl: impl.(cartCache), tracer: tracer, addMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Add", Remote: false, Generated: true}), getMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Get", Remote: false, Generated: true}), removeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Remove", Remote: false, Generated: true})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return cartCache_client_stub{stub: stub, addMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Add", Remote: true}), getMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Get", Remote: true}), removeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Remove", Remote: true})}
+			return cartCache_client_stub{stub: stub, addMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Add", Remote: true, Generated: true}), getMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Get", Remote: true, Generated: true}), removeMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/cartservice/cartCache", Method: "Remove", Remote: true, Generated: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return cartCache_server_stub{impl: impl.(cartCache), addLoad: addLoad}
@@ -576,10 +576,10 @@ func (s cartCache_client_stub) Remove(ctx context.Context, a0 string) (r0 bool, 
 // Note that "weaver generate" will always generate the error message below.
 // Everything is okay. The error message is only relevant if you see it when
 // you run "go build" or "go run".
-var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+var _ codegen.LatestVersion = codegen.Version[[0][24]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.23.1 (codegen
-version v0.20.0). The generated code is incompatible with the version of the
+ERROR: You generated this file with 'weaver generate' v0.23.2 (codegen
+version v0.24.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
 

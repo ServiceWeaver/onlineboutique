@@ -20,10 +20,10 @@ func init() {
 		Iface: reflect.TypeOf((*CurrencyService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return currencyService_local_stub{impl: impl.(CurrencyService), tracer: tracer, convertMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "Convert", Remote: false}), getSupportedCurrenciesMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "GetSupportedCurrencies", Remote: false})}
+			return currencyService_local_stub{impl: impl.(CurrencyService), tracer: tracer, convertMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "Convert", Remote: false, Generated: true}), getSupportedCurrenciesMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "GetSupportedCurrencies", Remote: false, Generated: true})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return currencyService_client_stub{stub: stub, convertMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "Convert", Remote: true}), getSupportedCurrenciesMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "GetSupportedCurrencies", Remote: true})}
+			return currencyService_client_stub{stub: stub, convertMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "Convert", Remote: true, Generated: true}), getSupportedCurrenciesMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/currencyservice/CurrencyService", Method: "GetSupportedCurrencies", Remote: true, Generated: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return currencyService_server_stub{impl: impl.(CurrencyService), addLoad: addLoad}
@@ -206,10 +206,10 @@ func (s currencyService_client_stub) GetSupportedCurrencies(ctx context.Context)
 // Note that "weaver generate" will always generate the error message below.
 // Everything is okay. The error message is only relevant if you see it when
 // you run "go build" or "go run".
-var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+var _ codegen.LatestVersion = codegen.Version[[0][24]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.23.1 (codegen
-version v0.20.0). The generated code is incompatible with the version of the
+ERROR: You generated this file with 'weaver generate' v0.23.2 (codegen
+version v0.24.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
 
