@@ -3,7 +3,7 @@ module github.com/ServiceWeaver/onlineboutique
 go 1.21
 
 require (
-	github.com/ServiceWeaver/weaver v0.23.0
+	github.com/ServiceWeaver/weaver v0.23.2
 	github.com/google/uuid v1.3.1
 	github.com/hashicorp/golang-lru/v2 v2.0.1
 	go.opentelemetry.io/otel v1.19.0

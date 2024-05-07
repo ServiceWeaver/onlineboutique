@@ -21,10 +21,10 @@ func init() {
 		Iface: reflect.TypeOf((*ProductCatalogService)(nil)).Elem(),
 		Impl:  reflect.TypeOf(impl{}),
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
-			return productCatalogService_local_stub{impl: impl.(ProductCatalogService), tracer: tracer, getProductMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "GetProduct", Remote: false}), listProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "ListProducts", Remote: false}), searchProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "SearchProducts", Remote: false})}
+			return productCatalogService_local_stub{impl: impl.(ProductCatalogService), tracer: tracer, getProductMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "GetProduct", Remote: false, Generated: true}), listProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "ListProducts", Remote: false, Generated: true}), searchProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "SearchProducts", Remote: false, Generated: true})}
 		},
 		ClientStubFn: func(stub codegen.Stub, caller string) any {
-			return productCatalogService_client_stub{stub: stub, getProductMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "GetProduct", Remote: true}), listProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "ListProducts", Remote: true}), searchProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "SearchProducts", Remote: true})}
+			return productCatalogService_client_stub{stub: stub, getProductMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "GetProduct", Remote: true, Generated: true}), listProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "ListProducts", Remote: true, Generated: true}), searchProductsMetrics: codegen.MethodMetricsFor(codegen.MethodLabels{Caller: caller, Component: "github.com/ServiceWeaver/onlineboutique/productcatalogservice/ProductCatalogService", Method: "SearchProducts", Remote: true, Generated: true})}
 		},
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return productCatalogService_server_stub{impl: impl.(ProductCatalogService), addLoad: addLoad}
@@ -289,10 +289,10 @@ func (s productCatalogService_client_stub) SearchProducts(ctx context.Context, a
 // Note that "weaver generate" will always generate the error message below.
 // Everything is okay. The error message is only relevant if you see it when
 // you run "go build" or "go run".
-var _ codegen.LatestVersion = codegen.Version[[0][20]struct{}](`
+var _ codegen.LatestVersion = codegen.Version[[0][24]struct{}](`
 
-ERROR: You generated this file with 'weaver generate' v0.23.1 (codegen
-version v0.20.0). The generated code is incompatible with the version of the
+ERROR: You generated this file with 'weaver generate' v0.23.2 (codegen
+version v0.24.0). The generated code is incompatible with the version of the
 github.com/ServiceWeaver/weaver module that you're using. The weaver module
 version can be found in your go.mod file or by running the following command.
 
